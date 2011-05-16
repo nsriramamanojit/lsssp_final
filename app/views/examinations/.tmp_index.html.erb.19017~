@@ -1,0 +1,37 @@
+<h1>Examinations</h1>
+<%if @examinations.blank? %>
+<b>There are No Examinations yet..!</b>
+<%else %>
+<table id="box-table-a">
+    <tr>
+        <th scope="col">
+            SNo
+        </th>
+        <th scope="col">
+            Examination
+        </th>
+        <th scope="col">
+            Actions
+        </th>
+    </tr>
+    <% i = 1 %>
+    <% @examinations.each do |examination| %>
+    <tr>
+        <td>
+            <%= i %>
+        </td>
+        <td>
+            <%= examination.examname %>
+        </td>
+        <td>
+            <%= link_to 'View', examination %>| <%= link_to 'Edit', edit_examination_path(examination) %>| <%= link_to 'Delete', examination, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+    </tr>
+    <% i = i + 1 %>
+    <% end %>
+</table>
+<% end %>
+<br>
+<br>
+<%=link_to new_examination_path,:class=>'more' do %>
+Create Examination <% end %>

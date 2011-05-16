@@ -1,0 +1,48 @@
+<%=render :partial=>'common/header' %>
+<table class="tabbed" height="100%" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <!-- Start: SIDE BAR -->
+        <td id="sidebar" class="sidebar" valign="top">
+            <div class="filters">
+                <%list = "'"+controller_name.singularize+"_list'" %>
+                <h4>Search <%=controller_name.titleize %></h4>
+                <div style='margin: 0px 0px 6px;'>
+                    <%=render :partial=>'common/search' %>
+                </div>
+            </div>
+            <div class='panel'>
+                <div id='accordion'>
+                    <h3><a href="#">Recent <%=controller_name.titleize %></a></h3>
+                    <div id='recently'>
+                        <%= render(:partial=>"recent_items") %>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <!-- END: SIDE BAR -->
+        <td id='main' class='main' valign='top'>
+            <div class='title_tools'>
+                <abbr id='right_arrow'>
+                    &#9658;
+                </abbr>&nbsp;<%=link_to("Create #{controller_name.classify}",send("new_#{controller_name.singularize}_path")) %>
+                | 
+                <abbr id='right_arrow'>
+                    &#9658;
+                </abbr>&nbsp;<%=link_to("Export",send("export_#{controller_name}_path")) %>
+            </div>
+            <div class='title'>
+                <span><%=controller_name.titleize %></span>
+                <img alt='Loading' id='loading' src='/images/loading.gif' style='display: none;' width='16' height='16'/>
+            </div>
+            <div id='options' class='remote' style='display: none;'>
+            </div>
+            <div id="create_#{controller_name.singularize}" class='remote' style='display: none;'>
+            </div>
+            <div id='flash' style='display: none;'>
+            </div>
+            <%=render :partial=>'common/import_flash' %>
+            <%=yield %>
+        </td>
+    </tr>
+</table>
+<%=render :partial=>'common/footer' %>

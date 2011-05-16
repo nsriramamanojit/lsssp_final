@@ -1,0 +1,35 @@
+<h1>List Modules</h1>
+<%if @subjects.blank? %>
+<b>There are No Examinations yet..!</b>
+<%else %>
+<table id="box-table-a">
+    <tr>
+        <th scope="col">
+            SNo
+        </th>
+        <th scope="col">
+            Module
+        </th>
+        <th scope="col">
+            Actions
+        </th>
+    </tr>
+    <% i = 1 %>
+    <% @subjects.each do |subject| %>
+    <tr>
+        <td>
+            <%= i %>
+        </td>
+        <td>
+            <%= subject.name %>
+        </td>
+        <td>
+            <%= link_to 'View', subject %>| <%= link_to 'Edit', edit_subject_path(subject) %> | <%= link_to 'Delete', subject, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Create Question Bank', :controller => "questionbanks", :action=>"new", :module_id=>subject.id %>
+        </td>
+    </tr>
+    <% i = i + 1 %>
+    <% end %>
+</table>
+<% end %>
+<br/>
+<%= link_to 'New Module', new_subject_path,:class=>'more' %>

@@ -1,0 +1,26 @@
+<h1>List</h1>
+<table>
+    <tr>
+        <th>
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+    </tr>
+    <% @userexaminations.each do |userexamination| %>
+    <tr>
+        <td>
+            <%= link_to 'view', userexamination %>
+        </td>
+        <td>
+            <%= link_to 'Edit', edit_userexamination_path(userexamination) %>
+        </td>
+        <td>
+            <%= link_to 'Delete', userexamination, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+<br/>
+<%= link_to 'New', new_userexamination_path %>

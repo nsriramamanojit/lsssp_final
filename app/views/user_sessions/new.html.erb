@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <title>LSSSP</title>
+        <%= javascript_include_tag 'rails','application' %>
+        <%= stylesheet_link_tag 'admin_screen' %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body>
+        <div id="header">
+            <%=link_to image_tag("adminlogo.png"),root_url %>
+        </div>
+        <div class="tabless">
+            <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+                <%=render :partial=>'/import_flash' %>
+                <%= form_for @user_session, :url =>{:action => "create"} do |f| %>
+                <div class="title">
+                    Welcome to  LSSSP Panel
+                </div>
+                <div class="section">
+                    <div class="label">
+                        Email:
+                    </div>
+                    <%= f.text_field :email,:size=>30 %>
+                    <div class="label">
+                        Password:
+                    </div>
+                    <%= f.password_field :password,:size=>30 %>
+                </div>
+                <div style="margin-left: 12px;">
+                    <%= f.check_box :remember_me %><%= f.label :remember_me %>| <a href="/forgotpass">Forgot Password</a>
+                </div>
+                <br>
+                <div class="buttonbar">
+                    <%= f.submit "Login" %>
+                    or<a href="/registrations/new">Register</a>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <center>
+            <div id="footer">
+                © 2011
+            </div>
+        </center>
+    </body>
+</html>

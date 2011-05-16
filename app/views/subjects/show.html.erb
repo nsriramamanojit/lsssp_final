@@ -1,0 +1,25 @@
+<div class="form-container">
+    <fieldset>
+        <div>
+            <label>
+                <b>Name:</b>
+            </label>
+            <%=h @subject.name %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Description:</b>
+            </label>
+            <%=h @subject.description %>
+        </div>
+        <hr/>
+    </fieldset>
+</div>
+<div class="bottom_links">
+    <a href="/subjects" class="more">All Modules</a>
+    &nbsp;&nbsp;<%= link_to edit_subject_path(@subject),:class=>'more' do %>
+    Edit <% end %>
+    &nbsp;&nbsp;<%=link_to new_subject_path,:class=>'more' do %>
+    Create New Module <% end %>
+</div>

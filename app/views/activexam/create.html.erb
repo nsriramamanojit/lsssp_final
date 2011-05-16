@@ -1,0 +1,69 @@
+<style>
+    .leftpane {
+        width: 130px;
+        float: left;
+        border: 0px solid #000;
+        padding-top: 20px;
+    }
+    
+    .rightpane {
+        width: 130px;
+        float: right;
+        border: 0px solid #000;
+        padding-top: 20px;
+    }
+    
+    .centerpane {
+        border: 0px solid #000;
+        float: left;
+        padding: 30px 0px 0 30px;
+    }
+</style>
+<div class="leftpane">
+    &nbsp;
+</div>
+<div class="rightpane">
+    <b>Time Left: </b>
+    <input id="disp" readonly="true" type="text" border="0" name="disp" size="5" class="inputtext">
+    <br>
+    <a href="#" onclick="examsaveLogout();" class="more" />Save & Logout</a>
+</div>
+<div class="centerpane">
+    <h3>Questions</h3>
+    <% i = 1 %>
+    <table align="center">
+        <!-- TO Divide rows dynamically use Array method in_groups_of -->
+		<% @activexams.in_groups_of(25, false) do |row_columns| %>
+        <tr>
+            <% for active_exam in row_columns %>
+            <td>
+                <span class="<%=active_exam.question_id.eql?(@question.id) ? 'current' : 'loaded' %>" id="question_number_<%=active_exam.question_id%>"><%=link_to i, {:action=>'show',:id=>active_exam.id,:exam_id=>params[:exam_id]},:remote=>true %>
+                </span>
+            </td>
+            <% i = i + 1 %>
+            <% end %>
+        </tr>
+        <% end %>
+    </table>
+    <div id="questionShow">
+        <%= render 'question_show' %>
+    </div>
+    <div align="center">
+    <a href="#" onclick="examendAlert();" class="more" />Test Completed</a>
+</div>
+<script type="text/javascript">
+    function examendAlert(){
+        var answer = confirm("You are about to end your Test. If you really want to quit, please click OK. Otherwise, please click Cancel")
+        if (answer) 
+            window.location = "/activexam/test_complete?exam_id=<%= params[:exam_id]%>"
+    }
+</script>
+</div>
+<!--centerpane closed-->
+<script type="text/javascript">
+    function examsaveLogout(){
+        var answer = confirm("You are about to Save your Test. If you really want to Save and write Test again, please click OK. Otherwise, please click Cancel")
+        if (answer) 
+            window.location = "/activexam/save_exam?exam_id=<%= params[:exam_id] %>"
+    }
+</script>

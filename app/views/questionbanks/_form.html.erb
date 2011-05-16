@@ -1,0 +1,109 @@
+<style>
+    #graphical {
+        display: none;
+    }
+    }
+</style>
+<script>
+    $(function(){
+        $('.question_type').click(function(){
+            if ($(this).attr("id") == "1") {
+                $('#textual').show();
+                $("#graphical").hide();
+                
+            }
+            else {
+                if ($(this).attr("id") == "2") {
+                    $('#textual').hide();
+                    $("#graphical").show();
+                    
+                }
+                
+            }
+        });
+    });
+</script>
+<div class="form-container">
+    <table id="box-table-a">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Option
+                </th>
+                <th scope="col">
+                    Type
+                </th>
+                <th scope="col">
+                    Question and Solutions
+                </th>
+                <th scope="col">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <%= form_for @questionbank, :url => { :action => "create" }, :html=>{:multipart => true} do |f| %><!-- :remote => true, -->
+        <div>
+            Module Name:<b>
+                <font color="green">
+                    <%= @module_name %>
+                </font>
+            </b>
+            <%=f.hidden_field :subject_id, :value => params[:module_id] %>
+			<!-- get actual values from create action for edit -->
+        </div>
+        <tr>
+            <td>
+                <%= f.radio_button :question_option, 'random', :checked => true %>Random
+                <br>
+                <%= f.radio_button :question_option, 'mandatory' %>Mandatory
+            </td>
+            <td>
+                <%= f.radio_button :question_type, 'text', :id=>1, :class=>"question_type", :checked => 'checked' %>Text
+                <br>
+                <%= f.radio_button :question_type, 'image', :id=>2, :class=>"question_type" %>Image
+            </td>
+            <td>
+                <!-- Begin - Textual Div -->
+                <div id="textual">
+                    Question: <%= f.text_field :question_text %>
+                    <br>
+                    Solutions:
+                    <br>
+                    <%= f.check_box :option1_text_check %><%= f.text_field :option1_text,:size=>"20" %>
+                    <br>
+                    <%= f.check_box :option2_text_check %><%= f.text_field :option2_text,:size=>"20" %>
+                    <br>
+                    <%= f.check_box :option3_text_check %><%= f.text_field :option3_text,:size=>"20" %>
+                    <br>
+                    <%= f.check_box :option4_text_check %><%= f.text_field :option4_text,:size=>"20" %>
+                    <br>
+                    <%= f.check_box :option5_text_check %><%= f.text_field :option5_text,:size=>"20" %>
+                </div>
+                <!--- End - Textual Div -->
+                <!--- Begin Graphical Div -->
+                <div id="graphical">
+                    Question Image:<%= f.file_field :question %>
+                    <br/>
+                    Solution Images:
+                    <br/>
+                    <%= f.check_box :option1_image_check %><%= f.file_field :option1,:size=>'20' %>
+                    <br/>
+                    <%= f.check_box :option1_image_check %><%= f.file_field :option2,:size=>'20' %>
+                    <br/>
+                    <%= f.check_box :option1_image_check %><%= f.file_field :option3,:size=>'20' %>
+                    <br/>
+                    <%= f.check_box :option1_image_check %><%= f.file_field :option4,:size=>'20' %>
+                    <br/>
+                    <%= f.check_box :option1_image_check %><%= f.file_field :option5,:size=>'20' %>
+                </div>
+                <!-- end of graphical format -->
+            </td>
+            <td>
+                <div class="actions">
+                    <%= f.submit "Save" %>
+                </div>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>

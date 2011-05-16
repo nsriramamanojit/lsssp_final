@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    </head>
+    <body>
+        <h2>Password Reset, <%= @user.name %></h2>
+        <p>
+            You Login Details to LSSSP, 
+            your username is: <%= @user.email %>.
+            <br/>
+            your password is: <%= @user.password %>.
+            <br/>
+        </p>
+        <p>
+            To login to the site, just follow this link: <%= @url %>.
+        </p>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <title>LSSSP</title>
+        <%= javascript_include_tag 'rails','application' %>
+        <%= stylesheet_link_tag 'admin_screen' %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body>
+        <div id="header">
+            <%=link_to image_tag("adminlogo.png"),root_url %>
+        </div>
+        <div class="tabless">
+        <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+            <% if @user %>
+            <h3>Hi <%= @user.name %>, Your password is sent to Registred Email.</h3>
+            <% else %>
+            <h3>Please check your Email Id.</h3>
+            <% end %>
+        </div>
+    </body>
+</html>

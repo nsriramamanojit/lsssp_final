@@ -1,0 +1,75 @@
+<h1>Select Module for Question Bank</h1>
+<table id="box-table-a">
+    <tr>
+        <th scope="col">
+            Module
+        </th>
+        <th scope="col">
+            Actions
+        </th>
+    </tr>
+    <% @subjects.each do |subject| %>
+    <tr>
+        <td>
+            <%= subject.name %>
+        </td>
+        <td>
+            <%= link_to 'Create Question Bank', :controller => "questionbanks", :action=>"new", :module_id=>subject.id %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+<br>
+<h1>List Question Bank</h1>
+<table id="box-table-a">
+    <tr>
+        <th scope="col">
+            SNo
+        </th>
+        <th scope="col">
+            Module
+        </th>
+        <th scope="col">
+            Question
+        </th>
+        <th scope="col">
+            Actions
+        </th>
+    </tr>
+    <% i = 1 %>
+    <% @questionbanks.each do |questionbank| %>
+    <% if questionbank.question_type == 'image' %>
+    <tr>
+        <td>
+            <%= i %>
+        </td>
+        <td>
+            <%= questionbank.subject.name %>
+        </td>
+        <td>
+            <%= questionbank.question_file_name %>
+        </td>
+        <td>
+            <%= link_to 'View', {:action => 'show', :id => questionbank.id} %>| <%= link_to 'Edit', :controller => "questionbanks", :action=>"edit", :id=>questionbank.id %>
+        </td>
+    </tr>
+    <% elsif questionbank.question_type == 'text' %>
+    <tr>
+        <td>
+            <%= i %>
+        </td>
+        <td>
+            <%= questionbank.subject.name %>
+        </td>
+        <td>
+            <%= truncate(questionbank.question_text,:length => 25, :separator => '..') %>
+        </td>
+        <td>
+            <%= link_to 'View', {:action => 'show', :id => questionbank.id} %>| <%= link_to 'Edit', :controller => "questionbanks", :action=>"edit", :id=>questionbank.id %>
+        </td>
+    </tr>
+    <% end %>
+    <% i = i + 1 %>
+    <% end %>
+</table>
+<br/>

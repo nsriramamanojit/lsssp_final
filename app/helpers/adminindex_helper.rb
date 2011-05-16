@@ -1,0 +1,2 @@
+module AdminindexHelper
+end

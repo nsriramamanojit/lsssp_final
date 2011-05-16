@@ -1,0 +1,13 @@
+<%=render :partial=>'common/header' %>
+<table class="tabbed" height="100%" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <!-- END: SIDE BAR -->
+        <td id='main' class='main' valign='top'>
+            <div id='flash' style='display: none;'>
+            </div>
+            <%=render :partial=>'common/import_flash' %>
+            <%=yield %>
+        </td>
+    </tr>
+</table>
+<%=render :partial=>'common/footer' %>

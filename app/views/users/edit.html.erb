@@ -1,0 +1,6 @@
+<%=render :partial=>'form',:locals=>{:button_name=>'Update',:heading=>'Edit user'} %>
+<div class="bottom_links">
+    <a href="/users" class="more">All users</a>
+    <%= link_to [@user],:class=>'more' do %>
+    Show <% end %>
+</div>
