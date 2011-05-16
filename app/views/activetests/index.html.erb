@@ -1,5 +1,8 @@
 <h1>List of Available Examinations</h1>
 
+<% if @userexaminations.count == 0%>
+<h3>No Examinations are assigned for You yet!!! Please contact Admin</h3>
+<%else%>
 <table id="box-table-a">
   <tr>
     <th scope="col">Examination Name</th>
@@ -14,3 +17,4 @@
   </tr>
 <% end %>
 </table>
+<%end%>

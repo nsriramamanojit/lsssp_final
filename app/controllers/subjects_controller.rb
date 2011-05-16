@@ -36,6 +36,7 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(params[:subject])
+    
 
     respond_to do |format|
       if @subject.save
