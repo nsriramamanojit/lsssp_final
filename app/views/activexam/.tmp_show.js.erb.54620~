@@ -1,7 +1,4 @@
 <% if params[:from] %>
-$(".current").attr("style",'');
-$(".loaded").attr("style",'');
-$(".answered").attr("style",'');
 $("#question_number_<%=@question.id%>").css("background-color",'darkblue');
 $("#question_number_<%=@question.id-1%>").attr("style",'');
 $("#question_number_<%=@question.id+1%>").attr("style",'');
@@ -13,3 +10,4 @@ $("#question_number_<%=@question.id%>").attr("style",'');
 $("#question_number_<%=@question.id%>").css("background-color",'darkblue');
 $('#questionShow').html("<%= escape_javascript( render :partial=> "question_show") %>");
 <% end %>
+ 

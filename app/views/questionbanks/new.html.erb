@@ -23,8 +23,8 @@
 			<td> <%= i %></td>
 			<td> <%= questionbank.subject.name %></td>
 			<td> <%= questionbank.question_file_name %>
-			<%= truncate(questionbank.question_text,:length => 25, :separator => '..') %></td>
-			<td> <%= link_to 'View', {:action => 'show', :id => questionbank.id},:rel=>"facebox" %>| <%= link_to 'Edit', {:action => 'edit', :id => questionbank.id},:rel=>"facebox" %></td>
+			<%= truncate(questionbank.question_text,:length => 50, :separator => '..') %></td>
+			<td> <%= link_to 'View', {:action => 'show', :id => questionbank.id},:rel=>"facebox" %>| <%= link_to 'Edit', {:action => 'edit', :id => questionbank.id} %></td>
 		</tr>
 		<% i = i +1 %>
 		<% end %>

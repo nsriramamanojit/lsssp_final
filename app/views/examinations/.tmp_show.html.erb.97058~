@@ -52,6 +52,6 @@
     </fieldset>
 </div>
 <div class="bottom_links">
-    <%= link_to 'Edit', edit_examination_path(@examination),:class=>'more' %>
-    <%= link_to 'All Examinations', examinations_path ,:class=>'more' %>
+    <%= link_to 'Edit', {:action => 'edit', :id => @examination.id},:class=>'more' %>
+    <%= link_to 'All Examinations', {:action => 'index'} ,:class=>'more' %>
 </div>

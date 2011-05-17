@@ -22,7 +22,7 @@ class ExaminationsController < ApplicationController
     module_questions.each do |module_questions|
       m_q_array = module_questions.split(":")
       @module_id_array << m_q_array[0]
-      @question_id_array << m_q_array[1]   	
+      @question_id_array << m_q_array[1]    
     end
     
     respond_to do |format|

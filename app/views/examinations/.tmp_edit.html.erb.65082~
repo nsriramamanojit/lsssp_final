@@ -1,7 +1,7 @@
 <h1>Edit Examination</h1>
 <% id = params[:id] %>
 <div class="form-container">
-<%= form_for @examination,:url=>{:action => 'update'} do %>
+    <%= form_tag :action => 'update' %>
     <p class="legend">
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
@@ -69,7 +69,7 @@
     <div class="buttonrow">
         <%= submit_tag "Update" %>
     </div>
-    <% end %>
+    <%= form_tag %>
 </div>
 <div class="bottom_links">
     <a href="/examinations" class="more">All Examinations</a>

@@ -1,11 +1,3 @@
-  <script type="text/javascript">
-    jQuery(document).ready(function($) {
-      $('a[rel*=facebox]').facebox({
-        loadingImage : '../images/loading.gif',
-        closeImage   : '../images/closelabel.png'
-      })
-    })
-  </script>
 <h1>Select Module for Question Bank</h1>
 <table id="box-table-a">
 	<tr>
@@ -34,8 +26,8 @@
 	<tr>
 		<td> <%= i %></td>
 		<td> <%= questionbank.subject.name %></td>
-		<td> <%= questionbank.question_file_name %><%= truncate(questionbank.question_text,:length => 50, :separator => '..') %></td>
-		<td> <%= link_to 'View', {:action => 'show', :id => questionbank.id},:rel=>"facebox" %>| <%= link_to 'Edit', :controller => "questionbanks", :action=>"edit", :id=>questionbank.id %></td>
+		<td> <%= questionbank.question_file_name %><%= truncate(questionbank.question_text,:length => 25, :separator => '..') %></td>
+		<td> <%= link_to 'View', {:action => 'show', :id => questionbank.id} %>| <%= link_to 'Edit', :controller => "questionbanks", :action=>"edit", :id=>questionbank.id %></td>
 	</tr>
 	<% i = i + 1 %>
 	<% end %>

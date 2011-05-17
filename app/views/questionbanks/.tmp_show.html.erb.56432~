@@ -52,9 +52,6 @@
                 <b>Solution-3:</b>
             </label>
             <%= @questionbank.option3_text %>
-			<%if @questionbank.option3_text == ""%>
-			-----
-			<%end%>
 			<%if @questionbank.option3.file?%>
             <%= image_tag  @questionbank.option3.url %>
 			<%else%>
@@ -66,9 +63,6 @@
                 <b>Solution-4:</b>
             </label>
             <%= @questionbank.option4_text %>
-			<%if @questionbank.option4_text == ""%>
-			------
-			<%end%>
 			<%if @questionbank.option4.file?%>
             <%= image_tag  @questionbank.option4.url %>
 			<%else%>
@@ -79,5 +73,5 @@
 </div>
 <div class="bottom_links">
     <%= link_to 'Edit', {:controller => "questionbanks", :action=>"edit", :id=>@questionbank.id},:class=>'more' %>
- <!--   <%= link_to 'All Questions',{:action=>"index"} ,:class=>'more' %> -->
+    <%= link_to 'All Questions',{:action=>"index"} ,:class=>'more' %>
 </div>

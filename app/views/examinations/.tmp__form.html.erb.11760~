@@ -1,7 +1,5 @@
-<h1>Edit Examination</h1>
-<% id = params[:id] %>
 <div class="form-container">
-<%= form_for @examination,:url=>{:action => 'update'} do %>
+    <%= form_tag :action => 'create' %>
     <p class="legend">
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
@@ -25,20 +23,11 @@
         </label>
         <br>
         <% @subjects.each_with_index do |c, index| %>
-			 <% if @module_id_array.include?(c.id.to_s) %>
-				<label>
-            		<%= check_box_tag "module_#{index}", c.id , true%><%= c.name %>
-        		</label>
-        		<%= text_field_tag "no_of_questions_#{index}" , @question_id_array[index] %> Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
-        		<br />
-		<% else %>
-				<label>
-            		<%= check_box_tag "module_#{index}", c.id %><%= c.name %>
-        		</label>
-        		<%= text_field_tag "no_of_questions_#{index}" , @question_id_array[index] %> Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
-        		<br />
-		
-		<% end %>
+        <label>
+            <%= check_box_tag "module_#{index}", c.id %><%= c.name %>
+        </label>
+        <%= text_field_tag "no_of_questions_#{index}" %> Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
+        <br>
         <% end %>
     </div>
     <div>
@@ -67,10 +56,7 @@
         <%= text_field "examination" , "notattemptmarks" %>
     </div>
     <div class="buttonrow">
-        <%= submit_tag "Update" %>
+        <%= submit_tag "Create" %>
     </div>
-    <% end %>
-</div>
-<div class="bottom_links">
-    <a href="/examinations" class="more">All Examinations</a>
+    <%= form_tag %>
 </div>
