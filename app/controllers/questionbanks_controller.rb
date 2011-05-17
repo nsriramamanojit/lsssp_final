@@ -1,5 +1,5 @@
 class QuestionbanksController < ApplicationController
-  layout "admin"
+  layout "admin", :except => :show
   before_filter :require_user, :only => [:index,:show, :edit, :update]
   def index
     @questionbanks = Questionbank.all.paginate :per_page => 10, :page => params[:page]  #Pagination for 10 Records

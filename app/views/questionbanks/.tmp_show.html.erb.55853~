@@ -18,55 +18,55 @@
             <label>
                 <b>Question:</b>
             </label>
-            <%= @questionbank.question_text %>
-			<% if @questionbank.question.file?%>
+            <% if @questionbank.question_text == "" %>
             <%= image_tag  @questionbank.question.url %>
-			<%else%>
-			<%end%>
+            <%else %>
+            <%= @questionbank.question_text %>
+            <%end %>
         </div>
         <hr/>
         <div>
             <label>
                 <b>Solution-1:</b>
             </label>
-            <%= @questionbank.option1_text %>
-			<%if @questionbank.option1.file?%>
+            <%if @questionbank.option1_text == "" %>
             <%= image_tag  @questionbank.option1.url %>
-			<%else%>
-			<%end%>
+            <%else %>
+            <%= @questionbank.option1_text %>
+            <%end %>
         </div>
         <hr/>
         <div>
             <label>
                 <b>Solution-2:</b>
             </label>
-            <%= @questionbank.option2_text %>
-			<%if @questionbank.option2.file?%>
+            <%if @questionbank.option2_text == "" %>
             <%= image_tag  @questionbank.option2.url %>
-			<%else%>
-			<%end%>
+            <%else %>
+            <%= @questionbank.option2_text %>
+            <%end %>
         </div>
         <hr/>
         <div>
             <label>
                 <b>Solution-3:</b>
             </label>
-            <%= @questionbank.option3_text %>
-			<%if @questionbank.option3.file?%>
+            <%if @questionbank.option3_text == "" %>
             <%= image_tag  @questionbank.option3.url %>
-			<%else%>
-			<%end%>
+            <%else %>
+            <%= @questionbank.option3_text %>
+            <%end %>
         </div>
         <hr/>
         <div>
             <label>
                 <b>Solution-4:</b>
             </label>
+            <%if @questionbank.option4_text == "" %>
+            <%= image_tag @questionbank.option4.url %>
+            <%else %>
             <%= @questionbank.option4_text %>
-			<%if @questionbank.option4.file?%>
-            <%= image_tag  @questionbank.option4.url %>
-			<%else%>
-			<%end%>
+            <%end %>
         </div>
         <hr/>
     </fieldset>

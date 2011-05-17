@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>LSSSP</title>
-        <%= javascript_include_tag 'application','jquery-1.5.2.min','rails','facebox' %>
-        <%= stylesheet_link_tag 'admin_screen','facebox' %>
+        <%= javascript_include_tag 'application','jquery-1.5.2.min','rails' %>
+        <%= stylesheet_link_tag 'admin_screen' %>
         <%= csrf_meta_tag %>
     </head>
     <body id="store">

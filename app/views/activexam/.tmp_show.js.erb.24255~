@@ -11,3 +11,4 @@ $("#question_number_<%=@question.id%>").css("background-color",'darkblue');
 $('#questionShow').html("<%= escape_javascript( render :partial=> "question_show") %>");
 <% end %>
  
+

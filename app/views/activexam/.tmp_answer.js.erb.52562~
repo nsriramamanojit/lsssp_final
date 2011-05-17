@@ -1,0 +1,3 @@
+//checkbox or radio button clicked (so user answered the question update question number)
+$("#question_number_<%= params[:question_id] %>").attr('style', '')
+$("#question_number_<%= params[:question_id] %>").attr('class', 'answered')

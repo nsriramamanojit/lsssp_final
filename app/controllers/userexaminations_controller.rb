@@ -37,17 +37,23 @@ class UserexaminationsController < ApplicationController
   end
   
   def create
-    @examinations = Examination.all
+#    @examinations = Examination.all
     
-    @examinations.each_with_index do | s, index |
-      exam_id = params["exam_#{s.id}".to_sym]
-      @totalduration = Examination.find(:first, :conditions=>{:id => exam_id})
-      @duration = @totalduration.duration
-      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id,:duration=>@duration)
-      @userexamination.save
-    end
-    
-    redirect_to users_path
+#    @examinations.each_with_index do | s, index |
+#      exam_id = params["exam_#{s.id}".to_sym]
+#      @totalduration = Examination.find(:first, :conditions=>{:id => exam_id})
+#      @duration = @totalduration.duration
+#      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id,:duration=>@duration)
+#      @userexamination.save
+#    end
+    params[:exam][:exam_ids].each do |exam_id|
+    @totalduration = Examination.find(:first, :conditions=>{:id => exam_id.to_i})
+    @duration = @totalduration.duration
+    @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id.to_i,:duration=>@duration)
+     @userexamination.save
+  end
+ redirect_to users_path   
+#    redirect_to users_path
     #--------------------------------------------------------------------- 
     
     #         @userexamination=Userexamination.new(params[:userexamination])

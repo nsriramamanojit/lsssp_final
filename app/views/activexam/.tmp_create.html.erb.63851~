@@ -37,9 +37,7 @@
         <tr>
             <% for active_exam in row_columns %>
             <td>
-                <!--<span class="<%=active_exam.question_id.eql?(@question.id) ? 'current' : 'loaded' %>" id="question_number_<%=active_exam.question_id%>"> -->
-				<span class="<%=active_exam.answer.nil? ? 'loaded' : 'answered' %>" id="question_number_<%=active_exam.question_id%>">
-                	<%=link_to i, {:action=>'show',:id=>active_exam.id,:exam_id=>params[:exam_id]},:remote=>true %>
+                <span class="<%=active_exam.question_id.eql?(@question.id) ? 'current' : 'loaded' %>" id="question_number_<%=active_exam.question_id%>"><%=link_to i, {:action=>'show',:id=>active_exam.id,:exam_id=>params[:exam_id]},:remote=>true %>
                 </span>
             </td>
             <% i = i + 1 %>

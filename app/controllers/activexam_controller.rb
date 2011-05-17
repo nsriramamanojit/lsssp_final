@@ -46,11 +46,12 @@ class ActivexamController < ApplicationController
         
       end	
       if @user_exam_init.size >= 1 
-        @activexams = Activexam.find(:all, :conditions => {:examination_id => params[:exam_id], :user_id => @created_by, :subject_id=>@module_id_array})
+         @activexams = Activexam.find(:all, :conditions => {:examination_id => params[:exam_id], :user_id => @created_by, :subject_id=>@module_id_array})
       else
        (0..@module_id_array.size-1).each do | m|
           @questions_required = Questionbank.find(:all, :conditions=>{:subject_id => @module_id_array[m]}, :limit=> @question_id_array[m])
-          @questions_required.each do |q |
+          @questions_required_rand = @questions_required.sort_by {rand}
+          @questions_required_rand.each do |q |
           @activexam = Activexam.new(:user_id => @created_by,:examination_id => params[:exam_id],:subject_id => @module_id_array[m] , :question_id => q.id)
           @activexam.save
           end
@@ -76,7 +77,6 @@ class ActivexamController < ApplicationController
   
   def test_complete
     #  	exam_id = params[:exam_id]
-    
     @total_notanswer = Activexam.count(:conditions=>{:answer => nil, :user_id => @created_by, :examination_id =>params[:exam_id]})
     @total_questions = Activexam.count(:conditions => {:examination_id => params[:exam_id], :user_id=>@created_by})
     @total_answered = @total_questions - @total_notanswer

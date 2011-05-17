@@ -1,13 +1,5 @@
 <h1>Question Bank</h1>
 <%= render 'form' %>
-  <script type="text/javascript">
-    jQuery(document).ready(function($) {
-      $('a[rel*=facebox]').facebox({
-        loadingImage : '../images/loading.gif',
-        closeImage   : '../images/closelabel.png'
-      })
-    })
-  </script>
 <h1>Questions</h1>
 <div id="questionList">
 	<table id="box-table-a">
@@ -24,7 +16,7 @@
 			<td> <%= questionbank.subject.name %></td>
 			<td> <%= questionbank.question_file_name %>
 			<%= truncate(questionbank.question_text,:length => 25, :separator => '..') %></td>
-			<td> <%= link_to 'View', {:action => 'show', :id => questionbank.id},:rel=>"facebox" %>| <%= link_to 'Edit', {:action => 'edit', :id => questionbank.id},:rel=>"facebox" %></td>
+			<td> <%= link_to 'View', {:action => 'show', :id => questionbank.id} %>| <%= link_to 'Edit', {:action => 'edit', :id => questionbank.id} %></td>
 		</tr>
 		<% i = i +1 %>
 		<% end %>
