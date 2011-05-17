@@ -1,0 +1,20 @@
+<h1>List of Available Examinations</h1>
+
+<% if @userexaminations.count == 0%>
+<h3>No Examinations are assigned for You yet!!! Please contact Admin</h3>
+<%else%>
+<table id="box-table-a">
+  <tr>
+    <th scope="col">Examination Name</th>
+    <th scope="col">Actions</th>
+  </tr>
+
+<% @userexaminations.each do |userexamination| %>
+  <tr>
+    <td><%= userexamination.examination.examname %></td>
+    <td><%= link_to 'Start Examination', :controller => "activexam", :action=>"create", :exam_id=> userexamination.examination_id %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%end%>

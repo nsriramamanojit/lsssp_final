@@ -1,0 +1,118 @@
+<%=render :partial=>'common/header' %>
+<style type="text/css">
+    .inputtext {
+        width: 50px;
+        height: 20px;
+        font-weight: bold;
+        color: blue;
+    }
+    
+    .loaded, .current, .answered, .visited {
+        /*     border: 1px solid #1E4262;*/
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        display: block;
+        text-align: center;
+        width: 2.8em;
+        background-color: pink;
+    }
+    
+    .loaded a, .current a, .answered a, .visited a {
+        color: white;
+    }
+    
+    .loaded:hover, .current:hover, .answered:hover, .visited:hover {
+        background: #0F07F7;
+    }
+    
+    .question_link a {
+        color: white;
+    }
+    
+    .current {
+        background-color: #1E4262;
+    }
+    
+    .visited {
+        background-color: pink;
+    }
+    
+    .answered {
+        background-color: skyblue;
+    }
+</style>
+<script type="text/javascript">
+    var mins
+    var secs;
+    
+    function countDown(){
+        mins = 1 * minutes("<%= @total_time %>"); // change minutes here
+        secs = 0 + seconds(":01"); // change seconds here (always add an additional second to your total)
+        redo();
+    }
+    
+    function minutes(obj){
+        for (var i = 0; i < obj.length; i++) {
+            if (obj.substring(i, i + 1) == ":") 
+                break;
+        }
+        return (obj.substring(0, i));
+    }
+    
+    function seconds(obj){
+        for (var i = 0; i < obj.length; i++) {
+            if (obj.substring(i, i + 1) == ":") 
+                break;
+        }
+        return (obj.substring(i + 1, obj.length));
+    }
+    
+    function dis(mins, secs){
+        var disp;
+        if (mins <= 9) {
+            disp = " 0";
+        }
+        else {
+            disp = " ";
+        }
+        disp += mins + ":";
+        if (secs <= 9) {
+            disp += "0" + secs;
+        }
+        else {
+            disp += secs;
+        }
+        return (disp);
+    }
+    
+    function redo(){
+        secs--;
+        if (secs == -1) {
+            secs = 59;
+            mins--;
+        }
+        document.getElementById('disp').value = dis(mins, secs); // setup additional displays here.
+        if ((mins == 0) && (secs == 0)) {
+            window.alert("Exam Time is up. Press OK to continue view your score."); // change timeout message as required
+            window.location = "/activexam/test_complete?exam_id=<%= params[:exam_id]%>" // redirects to specified page once timer ends and ok button is pressed
+        }
+        else {
+            cd = setTimeout("redo()", 1000);
+        }
+    }
+    
+    function init(){
+        countDown();
+        
+    }
+    
+    window.onload = init;
+</script>
+<table class="tabbed"  width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td id='main' class='main' valign='top'>
+            <%=yield %>
+        </td>
+    </tr>
+</table>
+<%=render :partial=>'common/footer' %>

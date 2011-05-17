@@ -62,9 +62,8 @@
 <!--centerpane closed-->
 <script type="text/javascript">
     function examsaveLogout(){
-		tid = $("#disp").val();
         var answer = confirm("You are about to Save your Test. If you really want to Save and write Test again, please click OK. Otherwise, please click Cancel")
         if (answer) 
-            window.location = "/activexam/save_exam?exam_id=<%= params[:exam_id] %>&time="+tid
+            window.location = "/activexam/save_exam?exam_id=<%= params[:exam_id] %>"
     }
 </script>

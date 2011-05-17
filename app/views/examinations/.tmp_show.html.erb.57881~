@@ -1,0 +1,57 @@
+<div class="form-container">
+    <fieldset>
+        <div>
+            <label>
+                <b>Name:</b>
+            </label>
+            <%=h @examination.examname %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Duration:</b>
+            </label>
+            <%=h @examination.duration %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Questions:</b>
+            </label>
+            <% @module_id_array.each_with_index do | m, index | -%>
+            <%= Subject.find(@module_id_array[index]).name %>: <%= @question_id_array[index] %>&nbsp;<% end -%>
+        </div>
+        <hr>
+        <div>
+            <label>
+                <b>Pass Marks:</b>
+            </label>
+            <%=h @examination.passmarks %>
+        </div>
+        <hr>
+        <div>
+            <label>
+                <b>Positive Marks:</b>
+            </label>
+            <%=h @examination.positivemarks %>
+        </div>
+        <hr>
+        <div>
+            <label>
+                <b>Negative Marks:</b>
+            </label>
+            <%=h @examination.negativemarks %>
+        </div>
+        <hr>
+        <div>
+            <label>
+                <b>Not Attempt Marks:</b>
+            </label>
+            <%=h @examination.notattemptmarks %>
+        </div>
+    </fieldset>
+</div>
+<div class="bottom_links">
+    <%= link_to 'Edit', edit_examination_path(@examination),:class=>'more' %>
+    <%= link_to 'All Examinations', examinations_path ,:class=>'more' %>
+</div>

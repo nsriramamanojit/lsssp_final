@@ -18,7 +18,7 @@ class ActivexamController < ApplicationController
     if @exam_active.exam_complete_status == true
       redirect_to :controller=> 'activetests', :action=>'testcompleted', :exam_id => params[:exam_id]
     else # for exam completed or not
-    
+      
       @exam_active.exam_active_status =1
       @exam_active.number_of_attempts = @exam_active.number_of_attempts + 1
       @exam_active.save
@@ -41,26 +41,18 @@ class ActivexamController < ApplicationController
       module_questions.each do |module_questions|
         m_q_array = module_questions.split(":")
         @module_id_array << m_q_array[0]
-        # 	    puts "##########"
-        # 	    puts @module_id_array.size
         @question_id_array << m_q_array[1]   	
         @no_of_q = @no_of_q + m_q_array[1].to_i
         
       end	
       if @user_exam_init.size >= 1 
-        #		 puts "##########Chaitanya###############"
         @activexams = Activexam.find(:all, :conditions => {:examination_id => params[:exam_id], :user_id => @created_by, :subject_id=>@module_id_array})
-        
       else
        (0..@module_id_array.size-1).each do | m|
           @questions_required = Questionbank.find(:all, :conditions=>{:subject_id => @module_id_array[m]}, :limit=> @question_id_array[m])
-          
           @questions_required.each do |q |
-            
-            @activexam = Activexam.new(:user_id => @created_by,:examination_id => params[:exam_id],:subject_id => @module_id_array[m] , :question_id => q.id)
-            @activexam.save
-            
-            
+          @activexam = Activexam.new(:user_id => @created_by,:examination_id => params[:exam_id],:subject_id => @module_id_array[m] , :question_id => q.id)
+          @activexam.save
           end
         end
         @activexams = Activexam.find(:all, :conditions => {:examination_id => params[:exam_id], :user_id => @created_by, :subject_id=>@module_id_array})
@@ -76,7 +68,7 @@ class ActivexamController < ApplicationController
   def show
     @aexam = Activexam.find(params[:id])   
     @question = Questionbank.find_by_id_and_subject_id(@aexam.question_id,@aexam.subject_id)
-    puts "#####################  #{@question.id}"
+    #    puts "#####################  #{@question.id}"
     respond_to do |format|
       format.js
     end
@@ -104,19 +96,9 @@ class ActivexamController < ApplicationController
     tid = params[:time]
     eid = params[:exam_id]
     
-    #    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    #    puts tid
     time_array = tid.split(":")
-    
-    
-    #	puts "#################"
-    #    puts eid
-    #    puts "###############"
-    #    puts @min_array
-    #    puts @sec_array
     a = time_array[0].to_i
     b = time_array[1].to_i
-    
     c = (60 * a) + b
     
     @exam = Activexam.find(:first, :conditions=>{ :user_id=>@created_by, :subject_id=> sid, :question_id => qid, :examination_id=>eid })
@@ -130,14 +112,24 @@ class ActivexamController < ApplicationController
   end
   
   def save_exam
+    tid = params[:time]
+    time_array = tid.split(":")
+    a = time_array[0].to_i
+    b = time_array[1].to_i
+    c = (60 * a) + b  
     
     @exam = Activexam.minimum('time_remain', :conditions=>{:user_id=>@created_by, :examination_id=>params[:exam_id]})
-    #  puts @exam
-    
-    @userexamination = Userexamination.find(:first, :conditions=>{:user_id=>@created_by, :examination_id=>params[:exam_id]})
-    @userexamination.time_remain = @exam
-    @userexamination.save
-    redirect_to logout_path
+    if @exam == nil
+      @userexamination = Userexamination.find(:first, :conditions=>{:user_id=>@created_by, :examination_id=>params[:exam_id]})#
+      @userexamination.time_remain = c
+      @userexamination.save
+      redirect_to logout_path
+    else
+      @userexamination = Userexamination.find(:first, :conditions=>{:user_id=>@created_by, :examination_id=>params[:exam_id]})#
+      @userexamination.time_remain = @exam
+      @userexamination.save
+      redirect_to logout_path
+    end
   end
   
   

@@ -10,7 +10,6 @@ class ActivetestsController < ApplicationController
   
   def testcompleted
     @exam_results = Userexamination.find(:first, :conditions=>{ :user_id=>@created_by, :examination_id=>params[:exam_id]})
-    
   end
   
 end
