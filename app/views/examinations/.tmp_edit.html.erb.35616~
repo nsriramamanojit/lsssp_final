@@ -1,23 +1,24 @@
+<h1>Edit Examination</h1>
+<% id = params[:id] %>
 <div class="form-container">
-<%= form_for @examination,:url=>{:action => 'create'} do |f| %>
-
+<%= form_for @examination,:url=>{:action => 'update'} do |f|%>
+<%= f.error_messages %>
     <p class="legend">
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
     </p>
-  <fieldset>
-  	<%= f.error_messages %>
+    <br>
     <div>
         <label>
-            Examination Name<em>*</em>:
+            Examination Name:
         </label>
         <%= text_field "examination", "examname" %>
     </div>
     <div>
         <label>
-            Duration<em>*</em>:
+            Duration:
         </label>
-        <%= text_field "examination","duration" %> Min
+        <%= text_field "examination","duration" %> Minitues
     </div>
     <div>
         <label>
@@ -25,11 +26,20 @@
         </label>
         <br>
         <% @subjects.each_with_index do |c, index| %>
-        <label>
-            <%= check_box_tag "module_#{index}", c.id %><%= c.name %>
-        </label>
-        <%= text_field_tag "no_of_questions_#{index}" %> Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
-        <br>
+			 <% if @module_id_array.include?(c.id.to_s) %>
+				<label>
+            		<%= check_box_tag "module_#{index}", c.id , true%><%= c.name %>
+        		</label>
+        		<%= text_field_tag "no_of_questions_#{index}" , @question_id_array[index] %> Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
+        		<br />
+		<% else %>
+				<label>
+            		<%= check_box_tag "module_#{index}", c.id %><%= c.name %>
+        		</label>
+        		<%= text_field_tag "no_of_questions_#{index}" , @question_id_array[index] %> Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
+        		<br />
+		
+		<% end %>
         <% end %>
     </div>
     <div>
@@ -58,8 +68,10 @@
         <%= text_field "examination" , "notattemptmarks" %>
     </div>
     <div class="buttonrow">
-        <%= submit_tag "Create" %>
+        <%= submit_tag "Update" %>
     </div>
-	</fieldset>
-    <%end%>
+    <% end %>
+</div>
+<div class="bottom_links">
+    <a href="/examinations" class="more">All Examinations</a>
 </div>

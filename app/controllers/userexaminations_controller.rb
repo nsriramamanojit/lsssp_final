@@ -103,4 +103,11 @@ class UserexaminationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+   def delete
+    @userexamination = Userexamination.find(:first,:conditions=>{:user_id=>params[:user_id], :examination_id=>params[:exam_id]})
+    @userexamination.destroy
+    Activexam.destroy_all(:user_id=>params[:user_id], :examination_id=>params[:exam_id])
+    redirect_to :back
+  end
+
 end

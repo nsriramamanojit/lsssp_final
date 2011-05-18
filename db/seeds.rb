@@ -3,7 +3,8 @@ session = User.create do |u|
   u.name = "SuperAdmin"
   u.email = 'superadmin@lsssp.org'
   u.password = u.password_confirmation = 'admin123'
-  u.phone_number=9999999999
+  u.mobile_number=9885976490
+  u.phone_numeber=8662524890
   u.status = 'Approved'
   u.created_by = 1
 end
@@ -12,7 +13,8 @@ session = User.create do |u|
   u.name = "Admin"
   u.email = 'admin@lsssp.org'
   u.password = u.password_confirmation = 'admin123'
-  u.phone_number=9885976490
+  u.mobile_number=9885976490
+  u.phone_number=8662524890
   u.status = 'Approved'
   u.created_by = 1
 end
@@ -21,7 +23,8 @@ session = User.create do |u|
   u.name = "Chaitanya"
   u.email = 'nchaitanya@lsssp.org'
   u.password = u.password_confirmation = 'student123'
-  u.phone_number=9885976490
+  u.mobile_number=9885976490
+  u.phone_number=8662524890
   u.status = 'Approved'
   u.created_by = 1
 end

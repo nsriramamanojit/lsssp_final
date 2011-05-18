@@ -6,16 +6,16 @@
             <label>
                 User Name:
             </label>
-           <font size="2" color="green"> <%= @user_name %></font>
+            <%= @user_name %>
             <%= hidden_field_tag  'user_id', @user_id %>
         </div>
         <hr/>
         <div>
             <label>
-                Assigned Examinations:
+                Present Assigned Examinations:
             </label>
             <%if @userexam.count == 0 %>
-             <font size="2" color="red">NO Examinations are Assigned Yet.</font>
+            NO Examination is Assigned Yet.
 			<%else %>
             <% @userexam.each do |a| %>
             <%= a.examination.examname %> &nbsp; <%=link_to 'Delete', {:action=>'delete', :user_id=>params[:user_id],:exam_id=>a.examination_id} %> | 

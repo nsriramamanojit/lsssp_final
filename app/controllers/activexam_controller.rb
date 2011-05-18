@@ -125,7 +125,7 @@ class ActivexamController < ApplicationController
       redirect_to logout_path
     else
       @userexamination = Userexamination.find(:first, :conditions=>{:user_id=>@created_by, :examination_id=>params[:exam_id]})#
-      @userexamination.time_remain = @exam
+      @userexamination.time_remain = c #@exam
       @userexamination.save
       redirect_to logout_path
     end

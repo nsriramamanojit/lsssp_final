@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :name
       t.string :phone_number
+      t.string :mobile_number
       t.string :crypted_password
       t.string :password_salt
       t.string :persistence_token, :null => false

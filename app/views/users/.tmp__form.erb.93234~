@@ -32,13 +32,13 @@
         </div>
         <div>
             <label for="phone_number">
-                Mobile Number<em>*</em>
+                Mobile Number
             </label>
             <%= f.text_field :mobile_number %>
         </div>
         <div>
             <label for="phone_number">
-                Phone Number<em>*</em>
+                Phone Number
             </label>
             <%= f.text_field :phone_number %>
         </div>

@@ -43,8 +43,9 @@ class QuestionbanksController < ApplicationController
 
   def create
     @questionbank = Questionbank.new(params[:questionbank])
-    @questionbanks = Questionbank.all.paginate :per_page => 10, :page => params[:page]  #Pagination for 10 Records
-
+    @questionbank.question_type = "other"
+     @questionbanks = Questionbank.all.paginate :per_page => 10, :page => params[:page]  #Pagination for 10 Records
+    
     respond_to do |format|
       if @questionbank.save
         format.html { redirect_to :back }
@@ -63,7 +64,7 @@ class QuestionbanksController < ApplicationController
     @module_name = Subject.find(@module_id).name
     @question.subject_id = params[:questionbank][:subject_id]
     @question.question_option = params[:questionbank][:question_option]
-    @question.question_type = params[:questionbank][:question_type]
+    @question.question_type = "other"
     @question.question_text = params[:questionbank][:question_text]
     @question.option1_text = params[:questionbank][:option1_text]
     @question.option2_text = params[:questionbank][:option2_text]
@@ -75,7 +76,7 @@ class QuestionbanksController < ApplicationController
     @question.option3_text_check = params[:questionbank][:option3_text_check]
     @question.option4_text_check = params[:questionbank][:option4_text_check]
     @question.option5_text_check = params[:questionbank][:option5_text_check]
-
+   
     @question.save
     redirect_to :action=>'index'
   #    respond_to do |format|

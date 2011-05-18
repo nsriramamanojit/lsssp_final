@@ -25,13 +25,6 @@
     </tr>
     <% end %>
 </table>
-<div class="flickr_pagination">
-	<%= will_paginate @users, :container => false %>
-	<div class='page_info'>
-		<%= page_entries_info @users, :entry_name => 'Users' %>
-	</div>
-</div>
 <br/>
-<%=link_to new_user_path,:class=>'more' do %>Create New User<% end %>
-&nbsp;&nbsp;&nbsp;
-<%= link_to 'Import Users',{:action=>'upload'},:class=>'more' %>
+<%=link_to new_user_path,:class=>'more' do %>
+Create New User<% end %>

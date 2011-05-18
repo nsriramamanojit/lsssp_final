@@ -1,11 +1,11 @@
+require 'fastercsv'
 class UsersController < ApplicationController
   layout 'admin'
-
+  
   #before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:index,:show, :edit, :update]
   def index
-
-    @users = User.all #paginate :page => params[:page], :per_page=>10,:order => 'created_at DESC'
+    @users = User.all.paginate :per_page => 20, :page => params[:page]  #Pagination for 10 Records
   end
   
   def new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user.created_by = @created_by
     respond_to do |format|
       if @user.save 
-      	#send mail
+        #send mail
         UserMailer.welcome_email(@user).deliver
         format.html { redirect_to(users_path, :notice => 'User was successfully created.') }    
       else
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-#    params[:user][:role_ids] ||= []
+    #    params[:user][:role_ids] ||= []
     
     @user.updated_by = @updated_by
     respond_to do |format|
@@ -48,17 +48,33 @@ class UsersController < ApplicationController
     end
   end
   
-    def destroy
+  def destroy
     @user = User.find(params[:id])
     @user.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
   end
   
-
-  
- 
-end
+  def csv_import
+    @user=CSV::Reader.parse(params[:upload][:file])
+    n=0
+    @user.each do |row|
+      user = User.create do |u|
+        u.name  =row[0]
+        u.email = row[1]
+        u.password = u.password_confirmation = row[1]
+        u.mobile_number = row[2]
+        u.phone_number = row[3]
+        u.status = 'Approved'
+        u.created_by = 2
+        u.updated_by=2
+      end
+    end
+    end
+    def upload
+   end
+    
+  end

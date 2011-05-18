@@ -19,14 +19,6 @@
         <hr/>
         <div>
             <label>
-                <b>Mobile:</b>
-            </label>
-            <%=h @user.mobile_number %>
-        </div>
-        <hr/>
- 
-        <div>
-            <label>
                 <b>Phone:</b>
             </label>
             <%=h @user.phone_number %>

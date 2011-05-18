@@ -4,7 +4,6 @@
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
     </p>
-	<fieldset>
     <%=f.error_messages %>
     <div>
         <label for="name">
@@ -14,13 +13,12 @@
     </div>
     <div>
         <label for="description ">
-            Description
+            Description <em>*</em>
         </label>
         <%= f.text_area :description ,:cols=>28,:rows=>5 %>
     </div>
     <div class="buttonrow">
         <%= f.submit "Create" %>
     </div>
-	</fieldset>
     <% end %>
 </div>

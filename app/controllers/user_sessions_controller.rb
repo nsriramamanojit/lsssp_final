@@ -19,7 +19,7 @@ class UserSessionsController < ApplicationController
       elsif user.roles.include?(admin) 
               redirect_to(:controller=>'adminindex',:action=>'index')
       else user.roles.include?(student)
-        redirect_to(:controller=>'student',:action=>'index')
+        redirect_to(:controller=>'activetests',:action=>'index')
       end
  
       else

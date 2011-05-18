@@ -1,83 +1,55 @@
-<div class="form-container">
-    <fieldset>
-        <div>
-            <label>
-                <b>Name:</b>
-            </label>
-            <%= h @questionbank.subject.name %>
-        </div>
-        <hr/>
-        <div>
-            <label>
-                <b>Question Option:</b>
-            </label>
-            <%= h  @questionbank.question_option %>
-        </div>
-        <hr/>
-        <div>
-            <label>
-                <b>Question:</b>
-            </label>
+<table id="q-table">
+    <tr>
+        <th scope="col">
             <%= @questionbank.question_text %>
-			<% if @questionbank.question.file?%>
+            <% if @questionbank.question.file? %>
             <%= image_tag  @questionbank.question.url %>
-			<%else%>
-			<%end%>
-        </div>
-        <hr/>
-        <div>
-            <label>
-                <b>Solution-1:</b>
-            </label>
+            <%else %>
+            <%end %>
+        </th>
+    </tr>
+    <tr>
+        <td>
             <%= @questionbank.option1_text %>
-			<%if @questionbank.option1.file?%>
+            <%if @questionbank.option1.file? %>
             <%= image_tag  @questionbank.option1.url %>
-			<%else%>
-			<%end%>
-        </div>
-        <hr/>
-        <div>
-            <label>
-                <b>Solution-2:</b>
-            </label>
+            <%else %>
+            <%end %>
+        </td>
+    </tr>
+    <tr>
+        <td>
             <%= @questionbank.option2_text %>
-			<%if @questionbank.option2.file?%>
+            <%if @questionbank.option2.file? %>
             <%= image_tag  @questionbank.option2.url %>
-			<%else%>
-			<%end%>
-        </div>
-        <hr/>
-        <div>
-            <label>
-                <b>Solution-3:</b>
-            </label>
+            <%else %>
+            <%end %>
+        </td>
+    </tr>
+    <tr>
+        <td>
             <%= @questionbank.option3_text %>
-			<%if @questionbank.option3_text == ""%>
-			-----
-			<%end%>
-			<%if @questionbank.option3.file?%>
+            <%if @questionbank.option3_text == "" %>
+            -----<%end %>
+            <%if @questionbank.option3.file? %>
             <%= image_tag  @questionbank.option3.url %>
-			<%else%>
-			<%end%>
-        </div>
-        <hr/>
-        <div>
-            <label>
-                <b>Solution-4:</b>
-            </label>
+            <%else %>
+            <%end %>
+        </td>
+    </tr>
+    <tr>
+        <td>
             <%= @questionbank.option4_text %>
-			<%if @questionbank.option4_text == ""%>
-			------
-			<%end%>
-			<%if @questionbank.option4.file?%>
+            <%if @questionbank.option4_text == "" %>
+            ------<%end %>
+            <%if @questionbank.option4.file? %>
             <%= image_tag  @questionbank.option4.url %>
-			<%else%>
-			<%end%>
-        </div>
-        <hr/>
-    </fieldset>
-</div>
+            <%else %>
+            <%end %>
+        </td>
+    </tr>
+</table>
 <div class="bottom_links">
     <%= link_to 'Edit', {:controller => "questionbanks", :action=>"edit", :id=>@questionbank.id},:class=>'more' %>
- <!--   <%= link_to 'All Questions',{:action=>"index"} ,:class=>'more' %> -->
+    <!--   <%= link_to 'All Questions',{:action=>"index"} ,:class=>'more' %> -->
 </div>

@@ -658,6 +658,7 @@ tt {
 }
 
 .errorExplanation {
+	width: 450px;
     background-color: seashell;
     border: 2px solid salmon;
     font-size: 12px;

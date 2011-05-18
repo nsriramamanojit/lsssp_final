@@ -8,7 +8,9 @@ Lsssp::Application.routes.draw do
 
   resources :subjects
 
-  resources :users
+  resources :users do
+     get 'upload', :on=>:collection
+  end
   
   resources :user_sessions
 

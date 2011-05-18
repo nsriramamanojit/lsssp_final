@@ -46,18 +46,13 @@ class ExaminationsController < ApplicationController
     @examination = Examination.find(params[:id])
     @subjects = Subject.all
     module_questions = @examination.module_questions.split(",")    
-
-       @module_id_array = Array.new
-      @question_id_array = Array.new
+    @h = Hash.new
       @no_of_q = 0
       module_questions.each do |module_questions|
         m_q_array = module_questions.split(":")
-        @module_id_array << m_q_array[0]
-        @question_id_array << m_q_array[1]    
+        @h[m_q_array[0]] = m_q_array[1] 
       end 
-     puts "***********************"
-     puts @module_id_array.class
-     puts @question_id_array.class   
+  puts "##################    #{@h}"
   end
   
   def create
@@ -88,10 +83,10 @@ class ExaminationsController < ApplicationController
     @examination = Examination.find(params[:id])
     @subjects = Subject.all
     storage_string = String.new
-    @subjects.each_with_index do | s, index |
-      if params["module_#{index}".to_sym]
-        module_id = params["module_#{index}".to_sym]
-        number_of_questions = params["no_of_questions_#{index}".to_sym]
+    @subjects.each do | c |
+      if params["module_#{c.id}".to_sym]
+        module_id = params["module_#{c.id}".to_sym]
+        number_of_questions = params["no_of_questions_#{c.id}".to_sym]
         storage_string << module_id.to_s + ":" + number_of_questions + ","
       end
     end

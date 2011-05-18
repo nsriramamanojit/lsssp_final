@@ -1,23 +1,22 @@
 <div class="form-container">
 <%= form_for @examination,:url=>{:action => 'create'} do |f| %>
-
+<%= f.error_messages %>
     <p class="legend">
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
     </p>
-  <fieldset>
-  	<%= f.error_messages %>
+    <br>
     <div>
         <label>
-            Examination Name<em>*</em>:
+            Examination Name:
         </label>
         <%= text_field "examination", "examname" %>
     </div>
     <div>
         <label>
-            Duration<em>*</em>:
+            Duration:
         </label>
-        <%= text_field "examination","duration" %> Min
+        <%= text_field "examination","duration" %> Minitues
     </div>
     <div>
         <label>
@@ -60,6 +59,5 @@
     <div class="buttonrow">
         <%= submit_tag "Create" %>
     </div>
-	</fieldset>
     <%end%>
 </div>
