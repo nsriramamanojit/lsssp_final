@@ -5,11 +5,16 @@
         <%= javascript_include_tag 'application','jquery-1.5.2.min','rails','facebox' %>
         <%= stylesheet_link_tag 'admin_screen','facebox' %>
         <%= csrf_meta_tag %>
+		<script type="text/javascript">
+            jQuery(document).ready(function($){
+                $('a[rel*=facebox]').facebox()
+            })
+        </script>
     </head>
     <body id="store">
         <div id="header">
             <div id="welcome">
-                Welcome: <span id="welcome_username"><%=current_user.name %></span>
+                Welcome: <span id="welcome_username"><%=current_user.first_name %></span>
                 <span>!&nbsp;&nbsp;</span>
                 | <%=link_to 'Profile',:controller=>'/users',:action=>'show',:id=>current_user.id %>
                 | <%=link_to 'Logout',logout_path %>

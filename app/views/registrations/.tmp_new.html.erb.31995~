@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <title>LSSSP</title>
+        <%= javascript_include_tag 'application','jquery-1.5.2.min','rails' %>
+        <%= stylesheet_link_tag 'admin_screen' %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body>
+        <div id="header">
+            <%=link_to image_tag("adminlogo.png"),root_url %>
+        </div>
+        <div class="tabless">
+            <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+                <%= form_for @user, :url =>{:action => "create"} do |f| %>
+                <div class="title">
+                    Enter Details for Registration
+                </div>
+                <div class="section">
+                    <div class="label">
+                        Name:
+                    </div>
+                    <%= f.text_field :name,:size=>30 %>
+                    <div class="label">
+                        Email:
+                    </div>
+                    <%= f.text_field :email,:size=>30 %>
+                    <div class="label">
+                        Password:
+                    </div>
+                    <%= f.password_field :password,:size=>30 %>
+                    <div class="label">
+                        Confirm Password:
+                    </div>
+                    <%= f.password_field :password_confirmation, :size=>30 %>
+                    <div class="label">
+                        Mobile:
+                    </div>
+                    <%= f.text_field :phone_number, :size=>30 %>
+                </div>
+                <div class="buttonbar">
+                    <%= f.submit "Register" %>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <center>
+            <div id="footer">
+                © 2011 LSSSP
+            </div>
+        </center>
+    </body>
+</html>

@@ -6,8 +6,8 @@ class CreateExaminations < ActiveRecord::Migration
       t.integer :duration
       t.string  :module_questions
       t.integer :positivemarks
-      t.integer :negativemarks
-      t.integer :notattemptmarks
+      t.integer :negativemarks,:default=>0
+      t.integer :notattemptmarks,:default=>0
       t.integer :passmarks
 
       t.timestamps

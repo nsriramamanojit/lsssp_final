@@ -7,6 +7,8 @@ class RegistrationsController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
+        #send mail
+        UserMailer.welcome_email(@user).deliver
         format.html { render :action=>"registration_complete" }    
       else
         format.html { render :action => "new" }

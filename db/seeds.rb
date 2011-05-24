@@ -1,16 +1,18 @@
 ########### Users ##################
 session = User.create do |u|
-  u.name = "SuperAdmin"
+  u.first_name = "Admin"
+  u.last_name = "Super"
   u.email = 'superadmin@lsssp.org'
   u.password = u.password_confirmation = 'admin123'
   u.mobile_number=9885976490
-  u.phone_numeber=8662524890
+  u.phone_number=8662524890
   u.status = 'Approved'
   u.created_by = 1
 end
 session.save
 session = User.create do |u|
-  u.name = "Admin"
+  u.first_name = "Admin"
+  u.last_name = "Admin"
   u.email = 'admin@lsssp.org'
   u.password = u.password_confirmation = 'admin123'
   u.mobile_number=9885976490
@@ -20,7 +22,8 @@ session = User.create do |u|
 end
 session.save
 session = User.create do |u|
-  u.name = "Chaitanya"
+  u.first_name = "Chaitanya"
+  u.last_name "Nimmagadda"
   u.email = 'nchaitanya@lsssp.org'
   u.password = u.password_confirmation = 'student123'
   u.mobile_number=9885976490

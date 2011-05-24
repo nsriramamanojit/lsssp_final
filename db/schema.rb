@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20110427072958) do
     t.text     "option4_imagepath"
     t.text     "option5_imagepath"
     t.text     "question_image_file_name"
+    t.integer  "correct_answer"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "question_file_name"
@@ -96,6 +97,9 @@ ActiveRecord::Schema.define(:version => 20110427072958) do
     t.string   "option4_file_name"
     t.string   "option4_content_type"
     t.integer  "option4_file_size"
+    t.string   "option5_file_name"
+    t.string   "option5_content_type"
+    t.integer  "option5_file_size"
   end
 
   create_table "roles", :force => true do |t|
@@ -140,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20110427072958) do
     t.string   "email"
     t.string   "name"
     t.string   "phone_number"
+    t.string   "mobile_number"
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token",                         :null => false

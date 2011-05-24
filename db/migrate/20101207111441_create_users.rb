@@ -4,7 +4,8 @@ class CreateUsers < ActiveRecord::Migration
 
      # t.string :login, :null => false
       t.string :email
-      t.string :name
+      t.string :first_name
+      t.string :last_name
       t.string :phone_number
       t.string :mobile_number
       t.string :crypted_password

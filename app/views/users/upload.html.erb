@@ -1,8 +1,4 @@
-<br/>
-<br/>
-<% form_for :upload, :url=>{:controller=>"users",
-:action=>"csv_import"},
-:html => { :multipart => true } do |f| -%>
+<% form_for :upload, :url=>{:controller=>"users",:action=>"csv_import"},:html => { :multipart => true } do |f| -%>
 <table>
 <tr>
     <td>

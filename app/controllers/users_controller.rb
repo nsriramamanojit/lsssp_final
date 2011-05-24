@@ -1,4 +1,4 @@
-require 'fastercsv'
+require 'csv'
 class UsersController < ApplicationController
   layout 'admin'
   
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+#    @user.password = @user.password_confirmation = params[:email]
     @user.created_by = @created_by
     respond_to do |format|
       if @user.save 
@@ -59,22 +60,47 @@ class UsersController < ApplicationController
   end
   
   def csv_import
-    @user=CSV::Reader.parse(params[:upload][:file])
+    csv_file = params[:upload][:file]
     n=0
-    @user.each do |row|
-      user = User.create do |u|
-        u.name  =row[0]
-        u.email = row[1]
-        u.password = u.password_confirmation = row[1]
-        u.mobile_number = row[2]
-        u.phone_number = row[3]
+    CSV.new(csv_file.tempfile,:col_sep => ",").each do |row|
+      @user = User.create do |u|
+        u.first_name  =row[0]
+        u.last_name = row[1]
+        u.email = row[2]
+        u.password = u.password_confirmation = row[2]
+#        u.phone_number = row[2]
+#        u.mobile_number = row[3]
         u.status = 'Approved'
         u.created_by = 2
         u.updated_by=2
+        
+      end
+      UserMailer.welcome_email(@user).deliver
+      @user.save     
+      n=n+1
+    end
+    flash[:notice]= "#{n} Users are imported sucessfully"
+    respond_to do |format|
+      format.html { redirect_to(users_path) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  
+  def upload
+  end
+  
+  def export
+    @users = User.all
+    outfile = "LSSP Users" + Time.now.strftime("%d-%m-%Y") + ".csv"
+    csv_data = CSV.generate do |csv|
+      csv << ["First Name","Last Name","Email","Mobile Number","Phone Number"]
+      @users.each do |user|
+        csv << [user.first_name,user.last_name,user.email,user.mobile_number,user.phone_number]
       end
     end
-    end
-    def upload
-   end
-    
+    send_data csv_data,
+    :type => 'text/csv; charset=iso-8859-1; header=present',
+    :disposition => "attachment; filename=#{outfile}"
   end
+end

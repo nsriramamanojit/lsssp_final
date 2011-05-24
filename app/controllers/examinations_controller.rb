@@ -59,14 +59,15 @@ class ExaminationsController < ApplicationController
     @examination = Examination.new(params[:examination])
     @subjects = Subject.all
     storage_string = String.new
-    @subjects.each_with_index do | s, index |
-      if params["module_#{index}".to_sym]
-        module_id = params["module_#{index}".to_sym]
-        number_of_questions = params["no_of_questions_#{index}".to_sym]
+    @subjects.each do | c |
+      if params["module_#{c.id}".to_sym]
+        module_id = params["module_#{c.id}".to_sym]
+        number_of_questions = params["no_of_questions_#{c.id}".to_sym]
         storage_string << module_id.to_s + ":" + number_of_questions + ","
       end
     end
     @examination.module_questions = storage_string.chop
+
     
     respond_to do |format|
       if @examination.save

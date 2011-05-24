@@ -6,33 +6,35 @@
     </p>
     <fieldset>
         <%= f.error_messages %>
+		       <div>
+            <label for="email">
+                Login Id/Email <em>*</em>
+            </label>
+            <%= f.text_field :email,:disabled => 'true' %>
+        </div>
         <div>
             <label for="name">
-                Name<em>*</em>
+                First Name<em>*</em>
             </label>
-            <%= f.text_field :name %>
+            <%= f.text_field :first_name %>
         </div>
-        <div>
-            <label for="email">
-                email <em>*</em>
+		<div>
+            <label for="name">
+                Last Name<em>*</em>
             </label>
-            <%= f.text_field :email %>
+            <%= f.text_field :last_name %>
         </div>
-        <div>
-            <label for="password">
-                Password <em>*</em>
-            </label>
-            <%= f.password_field :password %>
-        </div>
-        <div>
-            <label for="password_confirmation">
-                Password Confirmation
-            </label>
-            <%= f.password_field :password_confirmation %>
-        </div>
+ 
+ 
         <div>
             <label for="phone_number">
                 Mobile Number
+            </label>
+            <%= f.text_field :mobile_number %>
+        </div>
+		        <div>
+            <label for="phone_number">
+                Phone Number
             </label>
             <%= f.text_field :phone_number %>
         </div>

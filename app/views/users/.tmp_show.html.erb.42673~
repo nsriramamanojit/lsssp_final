@@ -1,0 +1,42 @@
+<div class="form-container">
+    <fieldset>
+        <legend>
+            <b><%=@user.name %></b>
+        </legend>
+        <div>
+            <label>
+                <b>Name:</b>
+            </label>
+            <%=h @user.name %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Email:</b>
+            </label>
+            <%=h @user.email %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Mobile:</b>
+            </label>
+            <%=h @user.mobile_number %>
+        </div>
+        <hr/>
+ 
+        <div>
+            <label>
+                <b>Phone:</b>
+            </label>
+            <%=h @user.phone_number %>
+        </div>
+        <hr/>
+    </fieldset>
+</div>
+<div class="bottom_links">
+    <%= link_to edit_user_path(@user),:class=>'more' do %>
+    Edit<% end %>
+    &nbsp;&nbsp;<a href="/users" class="more">All Users</a>
+    &nbsp;&nbsp;
+</div>

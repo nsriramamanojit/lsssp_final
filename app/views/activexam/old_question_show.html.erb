@@ -1,0 +1,292 @@
+    <% if @question.question_type == "text" %>
+    <% if @question.option3_text == "" || @question.option4_text == "" %>
+    <table id="q-table">
+        <tr>
+            <th scope="col">
+                <%= @question.question_text %>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type = "hidden" id="question_id" value="<%= @question.id %>" />
+				<input type = "hidden" id="subject_id" value="<%= @question.subject_id %>" />
+				<input type = "hidden" id="exam_id" value="<%= params[:exam_id] %>" />
+				<% if  @aexam.answer == 1 %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option1_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);"/>
+				<%= @question.option1_text %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 2 %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option2_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);"/>
+				<%= @question.option2_text %>
+                <% end %>
+            </td>
+        </tr>
+    </table><%else %>
+    <table id="q-table">
+        <tr>
+            <th scope="col">
+                <%= @question.question_text %>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type = "hidden" id="question_id" value="<%= @question.id %>" />
+				<input type = "hidden" id="subject_id" value="<%= @question.subject_id %>" />
+				<input type = "hidden" id="exam_id" value="<%= params[:exam_id] %>" />
+				<% if  @aexam.answer == 1 %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option1_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);"/>
+				<%= @question.option1_text %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 2 %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option2_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);"/>
+				<%= @question.option2_text %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 3 %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option3_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);"/>
+				<%= @question.option3_text %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 4 %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option4_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);"/>
+				<%= @question.option4_text %>
+                <% end %>
+            </td>
+        </tr>
+    </table><% end %>
+    <%end %>
+
+    <% if @question.question_type == "image" %>
+    <table id="q-table" algin="center">
+        <tr>
+            <th scope="col">
+                <%=image_tag @question.question.url(:medium) %>
+            </th>
+        </tr>
+        <tr>
+            <td valign="middle">
+                <input type = "hidden" id="question_id" value="<%= @question.id %>" />
+				<input type = "hidden" id="subject_id" value="<%= @question.subject_id %>" />
+				<input type = "hidden" id="exam_id" value="<%= params[:exam_id] %>" />
+				<% if  @aexam.answer == 1 %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);" checked="checked">
+				<%=image_tag @question.option1.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);">
+				<%=image_tag @question.option1.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 2 %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);" checked="checked">
+				<%=image_tag @question.option2.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);">
+				<%=image_tag @question.option2.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 3 %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);" checked="checked">
+				<%=image_tag @question.option3.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);">
+				<%=image_tag @question.option3.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 4 %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);" checked="checked">
+				<%=image_tag @question.option4.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);">
+				<%=image_tag @question.option4.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr>
+    </table><%end %>
+ 
+    <% if @question.question_type == "other" %>
+    <table id="q-table">
+        <tr>
+            <th scope="col">
+                <%= @question.question_text %>
+                <% if @question.question.file? %>
+                <%= image_tag  @question.question.url(:thumb) %><%= link_to "Enlarge",:rel=>"facebox" %>
+                <%else %>
+                <%end %>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type = "hidden" id="question_id" value="<%= @question.id %>" />
+				<input type = "hidden" id="subject_id" value="<%= @question.subject_id %>" />
+				<input type = "hidden" id="exam_id" value="<%= params[:exam_id] %>" />
+				<% if  @aexam.answer == 1 %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option1_text %>
+                <% if @question.option1.file? %>
+                <%= image_tag  @question.option1.url(:thumb) %>
+                <%else %>
+                <%end %>
+                <% else %>
+                <input type = "radio" name="answer" id="1" onclick="checkSelected(this.id);"/>
+				<%= @question.option1_text %>
+                <% if @question.option1.file? %>
+                <%= image_tag  @question.option1.url(:thumb) %>
+                <%else %>
+                <%end %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 2 %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option2_text %>
+                <% if @question.option2.file? %>
+                <%= image_tag  @question.option2.url(:thumb) %>
+                <%else %>
+                <%end %>
+                <% else %>
+                <input type = "radio" name="answer" id="2" onclick="checkSelected(this.id);"/>
+				<%= @question.option2_text %>
+                <% if @question.option2.file? %>
+                <%= image_tag  @question.option2.url(:thumb) %>
+                <%else %>
+                <%end %>
+                <% end %>
+            </td>
+        </tr>
+		<%if @question.option3_text == "" %>
+        <%if @question.option3.file? %>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 3 %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= image_tag  @question.option3.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);"/>
+				<%= image_tag  @question.option3.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr><%else %>
+        <%end %>
+        <%else %>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 3 %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option3_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="3" onclick="checkSelected(this.id);"/>
+				<%= @question.option3_text %>
+                <% end %>
+            </td>
+        </tr><%end %>
+        <%if @question.option4_text == "" %>
+        <%if @question.option4.file? %>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 4 %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= image_tag  @question.option4.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);"/>
+				<%= image_tag  @question.option4.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr><%else %>
+        <%end %>
+        <%else %>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 4 %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option4_text %>
+                <% else %>
+                <input type = "radio" name="answer" id="4" onclick="checkSelected(this.id);"/>
+				<%= @question.option4_text %>
+                <% end %>
+            </td>
+        </tr>
+		<%end %>
+		<%if @question.option5_text == "" %>
+        <%if @question.option5.file? %>
+        <tr>
+            <td>
+                <% if  @aexam.answer == 5 %>
+                <input type = "radio" name="answer" id="5" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= image_tag  @question.option5.url(:thumb) %>
+                <% else %>
+                <input type = "radio" name="answer" id="5" onclick="checkSelected(this.id);"/>
+				<%= image_tag  @question.option5.url(:thumb) %>
+                <% end %>
+            </td>
+        </tr>
+		<%else %>
+        <%end %>
+        <%else %>
+		
+        <tr>
+            <td>
+                <% if  @aexam.answer == 5 %>
+                <input type = "radio" name="answer" id="5" onclick="checkSelected(this.id);" checked="checked"/>
+				<%= @question.option5_text %>
+                <% if @question.option5.file? %>
+                <%= image_tag  @question.option5.url(:thumb) %>
+                <%else %>
+                <%end %>
+                <% else %>
+                <input type = "radio" name="answer" id="5" onclick="checkSelected(this.id);"/>
+				<%= @question.option5_text %>
+                <% if @question.option5.file? %>
+                <%= image_tag  @question.option5.url(:thumb) %>
+                <%else %>
+                <%end %>
+
+                <% end %>
+            </td>
+        </tr>
+		<%end %>
+    </table>
+	<% end %>
+ 

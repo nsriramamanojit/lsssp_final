@@ -1,0 +1,43 @@
+<div class="form-container">
+    <fieldset>
+        <legend>
+            <b><%=@user.name %></b>
+        </legend>
+        <div>
+            <label>
+                <b>Name:</b>
+            </label>
+            <%=h @user.name %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Email:</b>
+            </label>
+            <%=h @user.email %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Phone:</b>
+            </label>
+            <%=h @user.phone_number %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Last login ip:</b>
+            </label>
+            <%=h @user.last_login_ip %>
+        </div>
+        <hr/>
+        <div>
+            <label>
+                <b>Current login ip:</b>
+            </label>
+            <%=h @user.current_login_ip %>
+        </div>
+    </fieldset>
+</div>
+<br>
+<a href="/student/edit/<%= current_user.id %>",  class="more">Edit Profile</a>

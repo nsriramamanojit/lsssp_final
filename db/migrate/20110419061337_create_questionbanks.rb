@@ -28,6 +28,7 @@ class CreateQuestionbanks < ActiveRecord::Migration
       t.text    :option4_imagepath
       t.text    :option5_imagepath
       t.text    :question_image_file_name
+      t.integer :correct_answer
       t.timestamps
     end
   end

@@ -6,12 +6,24 @@
 <table id="box-table-a">
   <tr>
     <th scope="col">Examination Name</th>
+	<th scope="col">Examination Status</th>
     <th scope="col">Actions</th>
   </tr>
 
 <% @userexaminations.each do |userexamination| %>
   <tr>
     <td><%= userexamination.examination.examname %></td>
+	<td>
+		<%if userexamination.exam_complete_status == false%>
+		<font color="black">Pending</font>
+		<%else%>
+		<%if userexamination.result_status == true%>
+		<font color="green">PASSED</font>
+		<%else%>
+		<font color="red">FAILED</font>
+		<%end%>
+		<%end%>
+	</td>
     <td><%= link_to 'Start Examination', :controller => "activexam", :action=>"create", :exam_id=> userexamination.examination_id %>
     </td>
   </tr>

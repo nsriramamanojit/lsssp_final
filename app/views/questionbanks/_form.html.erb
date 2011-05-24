@@ -9,6 +9,7 @@
 			</tr>
 		</thead>
 		<%= form_for @questionbank, :url => { :action => "create" }, :html=>{:multipart => true} do |f| %><!-- :remote => true, -->
+		<%=f.error_messages %>
 		<div>
 			Module Name:
 			<b>
@@ -16,7 +17,7 @@
 				<%= @module_name %>
 			</font>
 			</b>
-			<%= f.hidden_field :subject_id, :value => params[:module_id] %>
+			<%= f.hidden_field :subject_id %>
 			
 			<!-- get actual values from create action for edit -->
 		</div>
@@ -32,6 +33,16 @@
 				<br>
 				Solutions:
 				<br>
+				<%= radio_button("questionbank", "correct_answer", 1,{ :checked => true }) %><%= f.text_field :option1_text,:size=>"20" %>
+				<br>
+				<%= radio_button("questionbank", "correct_answer", 2) %><%= f.text_field :option2_text,:size=>"20" %>
+				<br>
+				<%= radio_button("questionbank", "correct_answer", 3) %><%= f.text_field :option3_text,:size=>"20" %>
+				<br>
+				<%= radio_button("questionbank", "correct_answer", 4) %><%= f.text_field :option4_text,:size=>"20" %>
+				<br>
+				<%= radio_button("questionbank", "correct_answer", 5) %><%= f.text_field :option5_text,:size=>"20" %>
+				<!--
 				<%= f.check_box :option1_text_check %><%= f.text_field :option1_text,:size=>"20" %>
 				<br>
 				<%= f.check_box :option2_text_check %><%= f.text_field :option2_text,:size=>"20" %>
@@ -41,6 +52,7 @@
 				<%= f.check_box :option4_text_check %><%= f.text_field :option4_text,:size=>"20" %>
 				<br>
 				<%= f.check_box :option5_text_check %><%= f.text_field :option5_text,:size=>"20" %>
+				-->
 			</div>
 			<!--- End - Textual Div -->
 

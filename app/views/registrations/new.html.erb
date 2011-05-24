@@ -11,34 +11,47 @@
         <div id="header">
             <%=link_to image_tag("adminlogo.png"),root_url %>
         </div>
+        <%= form_for @user, :url =>{:action => "create"} do |f| %>
         <div class="tabless">
             <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
-                <%= form_for @user, :url =>{:action => "create"} do |f| %>
                 <div class="title">
-                    Enter Details for Registration
-                </div>
+                    Enter Details for Registration<br>
+					   </div>
+				<p class="legend">
+        <strong>Note:</strong>
+        Required fields are marked with an asterisk (<em>*</em>)
+    </p>
                 <div class="section">
                     <div class="label">
-                        Name:
+                        First Name:<em><font color="red">*</font></em>
                     </div>
-                    <%= f.text_field :name,:size=>30 %>
+                    <%= f.text_field :first_name,:size=>30 %>
                     <div class="label">
-                        Email:
+                        Last Name:<em><font color="red">*</font></em>
+                    </div>
+                    <%= f.text_field :last_name,:size=>30 %>
+                    <div class="label">
+                        Email:<em><font color="red">*</font></em>
                     </div>
                     <%= f.text_field :email,:size=>30 %>
                     <div class="label">
-                        Password:
+                        Password:<em><font color="red">*</font></em>
                     </div>
                     <%= f.password_field :password,:size=>30 %>
                     <div class="label">
-                        Confirm Password:
+                        Confirm Password:<em><font color="red">*</font></em>
                     </div>
                     <%= f.password_field :password_confirmation, :size=>30 %>
                     <div class="label">
                         Mobile:
                     </div>
+                    <%= f.text_field :mobile_number, :size=>30 %>
+					 <div class="label">
+                        Phone:
+                    </div>
                     <%= f.text_field :phone_number, :size=>30 %>
                 </div>
+				
                 <div class="buttonbar">
                     <%= f.submit "Register" %>
                 </div>

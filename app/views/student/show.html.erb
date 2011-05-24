@@ -1,15 +1,21 @@
 <div class="form-container">
     <fieldset>
-        <legend>
-            <b><%=@user.name %></b>
-        </legend>
+ 
         <div>
             <label>
-                <b>Name:</b>
+                <b>First Name:</b>
             </label>
-            <%=h @user.name %>
+            <%=h @user.first_name %>
         </div>
         <hr/>
+        <div>
+            <label>
+                <b>Last Name:</b>
+            </label>
+            <%=h @user.last_name %>
+        </div>
+        <hr/>
+ 
         <div>
             <label>
                 <b>Email:</b>
@@ -20,8 +26,16 @@
         <div>
             <label>
                 <b>Phone:</b>
-            </label>
+            </label>&nbsp;
             <%=h @user.phone_number %>
+        </div>
+        <hr/>
+		      <div>
+            <label>
+                <b>Mobile:</b>
+            </label>
+			&nbsp;
+            <%=h @user.mobile_number %>
         </div>
         <hr/>
         <div>
@@ -41,3 +55,4 @@
 </div>
 <br>
 <a href="/student/edit/<%= current_user.id %>",  class="more">Edit Profile</a>
+<a href="/student/change_pass/<%= current_user.id %>",  class="more">Change Password</a>

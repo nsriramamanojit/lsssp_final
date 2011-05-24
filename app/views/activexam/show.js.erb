@@ -2,14 +2,15 @@
 $(".current").attr("style",'');
 $(".loaded").attr("style",'');
 $(".answered").attr("style",'');
-$("#question_number_<%=@question.id%>").css("background-color",'darkblue');
+$("#question_number_<%=@question.id%>").css("background-color",'black');
 $("#question_number_<%=@question.id-1%>").attr("style",'');
 $("#question_number_<%=@question.id+1%>").attr("style",'');
 $('#questionShow').html("<%= escape_javascript( render :partial=> "question_show") %>");
 <% else %>
+$(".answered").attr("style",'');
 $(".current").css("background-color",'pink');
 $(".loaded").css("background-color",'pink');
 $("#question_number_<%=@question.id%>").attr("style",'');
-$("#question_number_<%=@question.id%>").css("background-color",'darkblue');
+$("#question_number_<%=@question.id%>").css("background-color",'black');
 $('#questionShow').html("<%= escape_javascript( render :partial=> "question_show") %>");
 <% end %>

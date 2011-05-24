@@ -1,0 +1,51 @@
+<div class="tabless">
+    <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+        <h3>Thank You for Giving Examination.</h3>
+		
+        <hr/>
+		<!--<h3>Total Questions in Examination&nbsp;: <%= @total_questions %> </h3>
+        <h3>Total Questions Answered&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <%= @total_answered %> </h3>
+        <h3>Total Questions Not attemted &nbsp;&nbsp;&nbsp;:<%=@total_notattemted_questions%> </h3>
+        <h3>Total Correct Answers &nbsp;&nbsp;&nbsp;: <%= @total_correct_answers %>(<%= @total_answered %>) </h3>
+        <h3>Total Wrong Answers &nbsp;&nbsp;&nbsp;: <%= @total_wrong_answers %>(<%= @total_answered %>) </h3>
+        <h3>Total Marks for correct answers &nbsp;&nbsp;&nbsp;: <%= @total_correct_answers %> X <%= @examination.positivemarks %> = <%= @examination.positivemarks * @total_correct_answers %> </h3>
+        <h3>Total Marks for negative answers &nbsp;&nbsp;&nbsp;:<%=@total_wrong_answers %> X <%= @examination.negativemarks %> =  <%=@total_wrong_answers * @examination.negativemarks  %></h3>
+        <h3>Total Marks for nQuestions Not attemted &nbsp;&nbsp;&nbsp;:<%=@total_notattemted_questions %> X <%= @examination.notattemptmarks %> =  <%=@total_notattemted_questions * @examination.notattemptmarks %></h3>
+        <% total_marks = (@examination.positivemarks * @total_correct_answers)-(@total_wrong_answers * @examination.negativemarks)-(@total_notattemted_questions * @examination.notattemptmarks) %>
+        <h3>Total Score : <%=total_marks%>   </h3>
+        <h3>Result : <font color="red"><%=total_marks >= @examination.passmarks ? 'Pass' : 'Fail' %></font>(Total pass marks for this exam is <%=@examination.passmarks%>)</h3>
+        -->
+
+
+		<% total_marks = (@examination.positivemarks * @total_correct_answers)-(@total_wrong_answers * @examination.negativemarks)-(@total_notattemted_questions * @examination.notattemptmarks) %>
+        <%if total_marks <= 0  || (@examination.positivemarks * @total_correct_answers) <=0 %>
+        <h3>“Sorry you have
+            <font color="red">
+                FAILED
+            </font>
+            your '<%=@examination.examname %>'. You scored '0'%, while the required passing is '<%= @examination.passmarks %>'%.
+            <br>
+            You will need to re-take this exam.”
+        </h3>
+        <%else %>
+        <%total_percentage = (total_marks / @total_questions * 100)/10 %>
+        <%if total_percentage >= @examination.passmarks %>
+        <h3>“Congratulations you have 
+            <font color="green">
+                PASSED
+            </font>
+            your '<%=@examination.examname %>'. 
+            <br>
+            You scored '<%= total_percentage %>'%, while the required passing is '<%= @examination.passmarks %>'%.”<h3><%else %>
+                <h3>“Sorry you have 
+                    <font color="red">
+                        FAILED
+                    </font>
+                    your '<%=@examination.examname %>'. You scored '<%=total_percentage %>'%, while the required passing is '<%= @examination.passmarks %>'%.
+                    <br>
+                    You will need to re-take this exam.”
+                </h3>
+                <%end %>
+                <%end %>
+                </div>
+            </div>

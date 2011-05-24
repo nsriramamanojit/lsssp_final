@@ -61,6 +61,7 @@ class ActivexamController < ApplicationController
       @aexam = @activexams.first
       @question = Questionbank.find_by_id_and_subject_id( @aexam.question_id,  @aexam.subject_id )
     end # End of If condition Exam completed or not Check
+    @total_questions = Activexam.count(:conditions => {:examination_id => params[:exam_id], :user_id=>@created_by})
     
     
   end
@@ -76,16 +77,45 @@ class ActivexamController < ApplicationController
   
   def test_complete
     #  	exam_id = params[:exam_id]
-    @total_notanswer = Activexam.count(:conditions=>{:answer => nil, :user_id => @created_by, :examination_id =>params[:exam_id]})
+    # @total_notanswer = Activexam.count(:conditions=>{:answer => nil, :user_id => @created_by, :examination_id =>params[:exam_id]})
     @total_questions = Activexam.count(:conditions => {:examination_id => params[:exam_id], :user_id=>@created_by})
-    @total_answered = @total_questions - @total_notanswer
+    
+    @examination = Examination.find(params[:exam_id])
+    
+    active_exams = Activexam.where(:examination_id => params[:exam_id], :user_id=>@created_by)
+    @total_correct_answers = 0
+    @total_notattemted_questions = 0
+    for active_exam in active_exams
+      @total_correct_answers += 1 if Questionbank.find(active_exam.question_id).correct_answer == active_exam.answer 
+      @total_notattemted_questions +=1 if active_exam.answer.nil?
+    end
+    @total_answered = @total_questions - @total_notattemted_questions
+    @total_wrong_answers = @total_answered - @total_correct_answers
+    
     
     @exam_active = Userexamination.find(:first, :conditions=>{ :user_id=>@created_by, :examination_id=>params[:exam_id]})
-    @exam_active.exam_complete_status =1
-    @exam_active.questions_answered = @total_answered
-    @exam_active.no_of_questions = @total_questions
-    @exam_active.save
+    #    @exam_active.save
     
+    @total_marks = (@examination.positivemarks * @total_correct_answers)-(@total_wrong_answers * @examination.negativemarks)-(@total_notattemted_questions * @examination.notattemptmarks)
+    @total_percentage = ((@total_marks.to_f / (@total_questions * @examination.positivemarks)) * 100.0).to_i
+    
+    if @total_percentage >= @examination.passmarks
+      @exam_active.exam_complete_status =1
+      @exam_active.questions_answered = @total_answered
+      @exam_active.no_of_questions = @total_questions
+      @exam_active.total_score = @total_percentage
+      @exam_active.result_status = 1
+      @exam_active.save
+    else
+      @exam_active.exam_complete_status =1
+      @exam_active.questions_answered = @total_answered
+      @exam_active.no_of_questions = @total_questions
+      @exam_active.total_score = @total_percentage
+      @exam_active.result_status = 0
+      @exam_active.save
+    end
+        ScoreCard.score_card(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
+        ScoreCard.score_card_admin(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
   end
   
   def answer

@@ -3,7 +3,7 @@
         <th scope="col">
             <%= @questionbank.question_text %>
             <% if @questionbank.question.file? %>
-            <%= image_tag  @questionbank.question.url %>
+            <%= image_tag  @questionbank.question.url(:medium) %>
             <%else %>
             <%end %>
         </th>
@@ -12,7 +12,7 @@
         <td>
             <%= @questionbank.option1_text %>
             <%if @questionbank.option1.file? %>
-            <%= image_tag  @questionbank.option1.url %>
+            <%= image_tag  @questionbank.option1.url(:medium) %>
             <%else %>
             <%end %>
         </td>
@@ -21,33 +21,70 @@
         <td>
             <%= @questionbank.option2_text %>
             <%if @questionbank.option2.file? %>
-            <%= image_tag  @questionbank.option2.url %>
+            <%= image_tag  @questionbank.option2.url(:medium) %>
             <%else %>
             <%end %>
         </td>
     </tr>
+    <%if @questionbank.option3_text == nil || @questionbank.option3_text == "" %>
+    <%if @questionbank.option3.file? %>
+    <tr>
+        <td>
+            <%= image_tag  @questionbank.option3.url(:medium) %>
+        </td>
+    </tr>
+    <%else %>
+    <%end %>
+    <%else %>
     <tr>
         <td>
             <%= @questionbank.option3_text %>
-            <%if @questionbank.option3_text == "" %>
-            -----<%end %>
-            <%if @questionbank.option3.file? %>
-            <%= image_tag  @questionbank.option3.url %>
+            <% if @questionbank.option3.file? %>
+            <%= image_tag  @questionbank.option3.url(:medium) %>
             <%else %>
             <%end %>
         </td>
     </tr>
+    <%end %>
+    <%if @questionbank.option4_text == nil || @questionbank.option4_text == "" %>
+    <%if @questionbank.option4.file? %>
+    <tr>
+        <td>
+            <%= image_tag  @questionbank.option4.url(:medium) %>
+        </td>
+    </tr>
+    <%end %>
+    <%else %>
     <tr>
         <td>
             <%= @questionbank.option4_text %>
-            <%if @questionbank.option4_text == "" %>
-            ------<%end %>
             <%if @questionbank.option4.file? %>
-            <%= image_tag  @questionbank.option4.url %>
+            <%= image_tag  @questionbank.option4.url(:medium) %>
             <%else %>
             <%end %>
         </td>
     </tr>
+    <%end %>
+    <%if @questionbank.option5_text == nil || @questionbank.option5_text == "" %>
+    <%if @questionbank.option5.file? %>
+    <tr>
+        <td>
+            <%= image_tag  @questionbank.option5.url(:medium) %>
+        </td>
+    </tr>
+    <%else %>
+    <%end %>
+    <%else %>
+    <tr>
+        <td>
+            <%= @questionbank.option5_text %>
+            <%if @questionbank.option5.file? %>
+            <%= image_tag  @questionbank.option5.url(:medium) %>
+            <%else %>
+            <%end %>
+        </td>
+    </tr>
+    <%end %>
 </table>
 <div class="bottom_links">
     <%= link_to 'Edit', {:controller => "questionbanks", :action=>"edit", :id=>@questionbank.id},:class=>'more' %>

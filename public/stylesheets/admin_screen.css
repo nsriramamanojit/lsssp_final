@@ -430,7 +430,7 @@ tt {
 
 .confirm {
     background: #cdfecd;
-    border-left: 10px palegreen solid;
+   
     font-size: 12px;
     margin: 0px 0px 6px 0px;
     padding: 6px;
@@ -1150,7 +1150,7 @@ color:#fff}
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	margin: 10px;
-	width: 800px;
+	width: 850px;
 	text-align: left;
 	border-collapse: collapse;
 }
@@ -1226,3 +1226,23 @@ flickr_pagination {
   .flickr_pagination .next_page {
     margin-left: 1em; }
 
+
+/* button & link */
+.confirm-large:hover{text-decoration:none;color:#646363;}
+.confirm, more:visited{
+	background-image:url(images/but-color.gif);
+	background-repeat:repeat-x;
+	display:inline-block;
+	height:31px;
+	line-height:29px;
+	padding:0 20px;
+	color:#fff !important;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}	
+.confirm:hover{
+	background-position:0 -31px !important;
+	text-decoration:none;
+	color:#fff;
+}

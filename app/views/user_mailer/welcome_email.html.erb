@@ -4,19 +4,23 @@
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     </head>
     <body>
-        <h2>Welcome to LSSSP, <%= @user.name %></h2>
+        <h2>Welcome to LSSSP, <%= @user.first_name %>&nbsp;<%= @user.last_name %></h2>
         <p>
-            You have successfully signed up to LSSSP, 
-            your username is: <%= @user.email %>.
-            <br/>
-            your password is: <%= @user.password %>.
-            <br/>
+            Your Lean Six Sigma Society of Professionals (LSSSP) profile has been successfully created on www.lsssp.org  Please store this for your future reference.
         </p>
         <p>
-            To login to the site, just follow this link: <%= @url %>.
+        Your login credentials are as follows:<br/>
+Username: <%= @user.email %> <br/>
+Password: <%= @user.password %> <br/>
         </p>
         <p>
-            Thanks for joining and have a great day!
+            To undertake a demo exam, real examination or review your profile please login with your above details on www.lsssp.org/login
+        </p>
+        <p>
+            Lean Six Sigma Society of Australasia (LSSSA) is the Asia-Pacific chapter for the global Lean Six Sigma Society of Professionals (LSSSP). In the event you may ever need support, please contact us on support@lsssp.org or your course provider.
+        </p>
+        <p>
+        Thanks for joining and have a great day!
         </p>
     </body>
 </html>

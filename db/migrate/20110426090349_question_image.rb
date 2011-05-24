@@ -15,6 +15,9 @@ class QuestionImage < ActiveRecord::Migration
     add_column :questionbanks, :option4_file_name,    :string
     add_column :questionbanks, :option4_content_type, :string
     add_column :questionbanks, :option4_file_size,    :integer
+    add_column :questionbanks, :option5_file_name,    :string
+    add_column :questionbanks, :option5_content_type, :string
+    add_column :questionbanks, :option5_file_size,    :integer
 
  end
 
@@ -34,6 +37,9 @@ class QuestionImage < ActiveRecord::Migration
     remove_column :questionbanks, :option4_file_name,    :string
     remove_column :questionbanks, :option4_content_type, :string
     remove_column :questionbanks, :option4_file_size,    :integer
+    remove_column :questionbanks, :option5_file_name,    :string
+    remove_column :questionbanks, :option5_content_type, :string
+    remove_column :questionbanks, :option5_file_size,    :integer
 
 
   end

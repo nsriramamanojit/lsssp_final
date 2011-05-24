@@ -37,20 +37,6 @@ module Lsssp
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
-   config.action_mailer.delivery_method = :smtp 
-   config.action_mailer.smtp_settings = { 
-   :enable_starttls_auto => :true, 
-   :address => "smtp.gmail.com", 
-   :port => 587, 
-   :domain => "jasita.com", 
-   :authentication => :plain, 
-   :user_name => "chaitanya@jasita.com", 
-   :password => "jasita14779", 
-   :tls => :true 
-   } 
-   config.action_mailer.perform_deliveries = :true 
-   config.action_mailer.raise_delivery_errors = :true 
-
-  end
+   config.filter_parameters += [:password]
+end
 end

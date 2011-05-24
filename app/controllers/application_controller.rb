@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     if current_user
       @created_by = current_user.id
       @updated_by = current_user.id
-      @created_name = current_user.name
-      @updated_name = current_user.name
+      @created_name = current_user.first_name
+      @updated_name = current_user.first_name
     end
   end
   

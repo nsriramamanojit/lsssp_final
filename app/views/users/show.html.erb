@@ -1,13 +1,18 @@
 <div class="form-container">
     <fieldset>
-        <legend>
-            <b><%=@user.name %></b>
-        </legend>
+
         <div>
             <label>
-                <b>Name:</b>
+                <b>First Name:</b>
             </label>
-            <%=h @user.name %>
+            <%=h @user.first_name %>
+        </div>
+        <hr/>
+		        <div>
+            <label>
+                <b>Last Name:</b>
+            </label>
+            <%=h @user.last_name %>
         </div>
         <hr/>
         <div>

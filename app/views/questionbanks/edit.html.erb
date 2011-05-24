@@ -37,15 +37,15 @@
 				<br>
 				Solutions:
 				<br>
-				<%= f.check_box :option1_text_check %><%= f.text_field :option1_text,:size=>"20" %>
+				<%= radio_button("questionbank", "correct_answer", 1) %><%= f.text_field :option1_text,:size=>"20" %>
 				<br>
-				<%= f.check_box :option2_text_check %><%= f.text_field :option2_text,:size=>"20" %>
+				<%= radio_button("questionbank", "correct_answer", 2) %><%= f.text_field :option2_text,:size=>"20" %>
 				<br>
-				<%= f.check_box :option3_text_check %><%= f.text_field :option3_text,:size=>"20" %>
+				<%= radio_button("questionbank", "correct_answer", 3) %><%= f.text_field :option3_text,:size=>"20" %>
 				<br>
-				<%= f.check_box :option4_text_check %><%= f.text_field :option4_text,:size=>"20" %>
+				<%= radio_button("questionbank", "correct_answer", 4) %><%= f.text_field :option4_text,:size=>"20" %>
 				<br>
-				<%= f.check_box :option5_text_check %><%= f.text_field :option5_text,:size=>"20" %>
+				<%= radio_button("questionbank", "correct_answer", 5) %><%= f.text_field :option5_text,:size=>"20" %>
 			</div>
 			<!--- End - Textual Div -->
 

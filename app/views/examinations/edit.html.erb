@@ -1,13 +1,14 @@
 <h1>Edit Examination</h1>
 <% id = params[:id] %>
 <div class="form-container">
-    <%= form_for @examination,:url=>{:action => 'update'} do |f| %>
+    <%= form_for @examination,:url=>{:action => 'update'},:html=>{:onsubmit=>'return validateCheckboxes();'} do |f| %>
     <%= f.error_messages %>
     <p class="legend">
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
     </p>
-    <br>
+  <fieldset>
+   <%= f.error_messages %>
     <div>
         <label>
             Examination Name:
@@ -25,22 +26,23 @@
             QuestionBank:
         </label>
         <br>
+  <% i =0 %>
         <% @subjects.each do |c| %>
         <% if @h.has_key?(c.id.to_s) %>
         <label>
-            <%= check_box_tag "module_#{c.id}", c.id , true %><%= c.name %>
+            <%= check_box_tag "module_#{c.id}", c.id , true,{:id=>"check_module_#{i}",:class=>'check_modules'} %><%= c.name %>
         </label>
-         <%= text_field_tag "no_of_questions_#{c.id}" , @h[c.id.to_s] %>Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
+         <%= text_field_tag "no_of_questions_#{c.id}" , @h[c.id.to_s] ,{:id=>"text_module_#{i}"}%>Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
         <br/>
         <% else %>
         <label>
-            <%= check_box_tag "module_#{c.id}", c.id %><%= c.name %>
+            <%= check_box_tag "module_#{c.id}", c.id ,false,{:id=>"check_module_#{i}",:class=>'check_modules'}%><%= c.name %>
         </label>
-		<%= text_field_tag "no_of_questions_#{c.id}" ,@h[c.id.to_s] %>Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
-		<% end %>
+<%= text_field_tag "no_of_questions_#{c.id}" ,@h[c.id.to_s] ,{:id=>"text_module_#{i}"}%>Available Questions: <%= Questionbank.count(:conditions => {:subject_id => c.id}) %>
+<% end %>
        
         <br/>
-        
+         <% i += 1 %>
         <% end %>
     </div>
     <div>
@@ -71,6 +73,7 @@
     <div class="buttonrow">
         <%= submit_tag "Update" %>
     </div>
+</fieldset>
     <% end %>
 </div>
 <div class="bottom_links">

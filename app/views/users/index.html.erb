@@ -2,7 +2,10 @@
 <table id="box-table-a">
     <tr>
         <th scope="col">
-            Name
+            First Name
+        </th>
+		        <th scope="col">
+            Last Name
         </th>
         <th scope="col">
             Email
@@ -12,10 +15,30 @@
         </th>
     </tr>
     <% @users.each do |user| %>
+	<%if user.id == 1 || user.id == 2%>
     <tr>
         <td>
-            <%= user.name %>
+            <%= user.first_name %>
         </td>
+		<td>
+            <%= user.last_name %>
+        </td>
+        <td>
+            <%= user.email %>
+        </td>
+        <td>
+            <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %> 
+        </td>
+    </tr>
+	<%else%>
+    <tr>
+        <td>
+            <%= user.first_name %>
+        </td>
+		 <td>
+            <%= user.last_name %>
+        </td>
+
         <td>
             <%= user.email %>
         </td>
@@ -23,6 +46,8 @@
             <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Assign Examination', :controller => "userexaminations", :action=>"new", :user_id=> user.id %>
         </td>
     </tr>
+	
+	<%end%>
     <% end %>
 </table>
 <div class="flickr_pagination">
@@ -35,3 +60,5 @@
 <%=link_to new_user_path,:class=>'more' do %>Create New User<% end %>
 &nbsp;&nbsp;&nbsp;
 <%= link_to 'Import Users',{:action=>'upload'},:class=>'more' %>
+&nbsp;&nbsp;&nbsp;
+<%= link_to 'Export Users',{:action=>'export'},:class=>'more' %>

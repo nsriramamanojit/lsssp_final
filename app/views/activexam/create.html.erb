@@ -16,7 +16,7 @@
     .centerpane {
         border: 0px solid #000;
         float: left;
-        padding: 30px 0px 0 30px;
+        padding: 10px 0px 0 30px;
     }
 </style>
 <div class="leftpane">
@@ -26,9 +26,14 @@
     <b>Time Left: </b>
     <input id="disp" readonly="true" type="text" border="0" name="disp" size="5" class="inputtext">
     <br>
-    <a href="#" onclick="examsaveLogout();" class="more" />Save & Logout</a>
+	<div id='confirm-dialog'>
+    <a href="#" class="confirm" />Save & Logout</a>
+	</div>
 </div>
 <div class="centerpane">
+	<h4 align="left"><font size="2"><%=@exam_active.examination.examname%></font> is of <font size="2"><%=@exam_active.duration%></font> minutes containing <font size="2"><%=@total_questions%></font> questions and needs a minimum of<font size="2"> <%=@exam_active.examination.passmarks%></font>% to successfully pass this exam.</h4>
+	<h4 align="left"><%= image_tag("pink.png", :size => "20x20")%> = un-attempted question  |  <%= image_tag("blue.png", :size => "20x20")%> = attempted question |  <%= image_tag("black.png", :size => "20x20")%> = current question</h4>
+   
     <h3>Questions</h3>
     <% i = 1 %>
     <table align="center">
@@ -51,22 +56,49 @@
         <%= render 'question_show' %>
     </div>
     <div align="center">
-    <a href="#" onclick="examendAlert();" class="more" />Test Completed</a>
+    	<div id='confirm-dialog_end'>
+    <a href="#" class="confirm" />Test Completed</a>
+	</div>
 </div>
-<script type="text/javascript">
-    function examendAlert(){
-        var answer = confirm("You are about to end your Test. If you really want to quit, please click OK. Otherwise, please click Cancel")
-        if (answer) 
-            window.location = "/activexam/test_complete?exam_id=<%= params[:exam_id]%>"
-    }
-</script>
+
 </div>
 <!--centerpane closed-->
+
 <script type="text/javascript">
-    function examsaveLogout(){
+jQuery(function ($) {
+	$('#confirm-dialog_end input.confirm, #confirm-dialog_end a.confirm').click(function (e) {
+		e.preventDefault();
 		tid = $("#disp").val();
-        var answer = confirm("You are about to Save your Test. If you really want to Save and Take this Test again, please click OK. Otherwise, please click Cancel")
-        if (answer) 
-            window.location = "/activexam/save_exam?exam_id=<%= params[:exam_id] %>&time="+tid
-    }
+		// example of calling the confirm function
+		// you must use a callback function to perform the "yes" action
+		confirm("You are about to end your Test. If you really want to quit, please click Yes. Otherwise, please click No", function () {
+			window.location.href = "/activexam/test_complete?exam_id=<%= params[:exam_id]%>"
+		});
+	});
+});
+jQuery(function ($) {
+	$('#confirm-dialog input.confirm, #confirm-dialog a.confirm').click(function (e) {
+		e.preventDefault();
+		tid = $("#disp").val();
+		// example of calling the confirm function
+		// you must use a callback function to perform the "yes" action
+		confirm("You are about to Save your Test. If you really want to Save and Take this Test again, please click Yes. Otherwise, please click No", function () {
+			window.location.href = "/activexam/save_exam?exam_id=<%= params[:exam_id] %>&time="+tid;
+		});
+	});
+});
 </script>
+		<!-- modal content -->
+		<div id='confirm'>
+			<div class='header'><span>Confirm</span></div>
+			<div class='message'></div>
+			<div class='buttons'>
+				<div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+			</div>
+		</div>
+		<!-- preload the images -->
+		<div style='display:none'>
+			<img src='img/confirm/header.gif' alt='' />
+			<img src='img/confirm/button.gif' alt='' />
+		</div>
+	</div>
