@@ -1,5 +1,0 @@
-<h1>New Examination</h1>
-
-<%= render 'form' %>
-
-

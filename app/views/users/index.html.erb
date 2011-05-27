@@ -1,6 +1,12 @@
 <h1>List of  Users</h1>
+<div class="flickr_pagination">
+<%= alphabar @paginator %>
+</div>
 <table id="box-table-a">
     <tr>
+       <th scope="col">
+            Enrollment Number
+        </th>
         <th scope="col">
             First Name
         </th>
@@ -17,6 +23,9 @@
     <% @users.each do |user| %>
 	<%if user.id == 1 || user.id == 2%>
     <tr>
+       <td>
+            ----
+        </td>
         <td>
             <%= user.first_name %>
         </td>
@@ -33,6 +42,9 @@
 	<%else%>
     <tr>
         <td>
+            <%= user.enrollment_number %>
+        </td>
+        <td>
             <%= user.first_name %>
         </td>
 		 <td>
@@ -43,19 +55,15 @@
             <%= user.email %>
         </td>
         <td>
-            <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Assign Examination', :controller => "userexaminations", :action=>"new", :user_id=> user.id %>
+            <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Assign Examination', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | <%= link_to 'Examination Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %>
+        </td>
         </td>
     </tr>
 	
 	<%end%>
     <% end %>
 </table>
-<div class="flickr_pagination">
-	<%= will_paginate @users, :container => false %>
-	<div class='page_info'>
-		<%= page_entries_info @users, :entry_name => 'Users' %>
-	</div>
-</div>
+
 <br/>
 <%=link_to new_user_path,:class=>'more' do %>Create New User<% end %>
 &nbsp;&nbsp;&nbsp;

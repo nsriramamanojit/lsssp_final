@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427072958) do
+ActiveRecord::Schema.define(:version => 20110524081636) do
 
   create_table "activetests", :force => true do |t|
     t.datetime "created_at"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20110427072958) do
     t.integer  "duration"
     t.string   "module_questions"
     t.integer  "positivemarks"
-    t.integer  "negativemarks"
-    t.integer  "notattemptmarks"
+    t.integer  "negativemarks",    :default => 0
+    t.integer  "notattemptmarks",  :default => 0
     t.integer  "passmarks"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -136,13 +136,15 @@ ActiveRecord::Schema.define(:version => 20110427072958) do
     t.integer  "no_of_questions"
     t.integer  "questions_answered"
     t.integer  "total_score"
+    t.boolean  "result_status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "phone_number"
     t.string   "mobile_number"
     t.string   "crypted_password"
@@ -159,6 +161,10 @@ ActiveRecord::Schema.define(:version => 20110427072958) do
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "enrollment_number"
+    t.string   "perishable_token",  :default => "",         :null => false
   end
+
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end

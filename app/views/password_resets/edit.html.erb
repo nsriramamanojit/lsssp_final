@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <title>LSSSP</title>
+        <%= javascript_include_tag 'rails','application' %>
+        <%= stylesheet_link_tag 'admin_screen' %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body>
+        <div id="header">
+            <%=link_to image_tag("adminlogo.png"),root_url %>
+        </div>
+        <div class="tabless">
+            <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+            <%=render :partial=>'/import_flash' %>
+            <div class="title">
+                Welcome to  LSSSP Panel
+            </div>
+            <div class="section">
+                <div class="label">
+                    Enter Your New Password
+                </div>
+                <%= form_for @user, :url =>{:action=>'update'}, :method => :put do |f| %>
+                <%= f.error_messages %>
+                <%= f.label :password %>
+                <br/>
+                <%= f.password_field :password %>
+                <br/>
+                <br/>
+                <%= f.label :password_confirmation %>
+                <br/>
+                <%= f.password_field :password_confirmation %>
+                <br/>
+                <br/>
+                <%= f.submit "Update Password" %>
+                <% end %>
+            </div>
+            </body>
+        </html>

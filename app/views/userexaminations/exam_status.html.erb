@@ -1,7 +1,17 @@
-<h2>List of Available Examinations</h2>
+<h2>Examination Status</h2>
+<table>
+<tr>
+<td><h3>Enrollment Number:</h3></td>
+<td><h3> <font color="blue"><%=@user.enrollment_number%></font><h3></td>
+</tr>
+<tr>
+<td><h3>User Email:</h3> </td>
+<td><font color="blue"><h3><%=@user.email%></font></h3></td>
+</tr>
+</table>
 
 <% if @userexaminations.count == 0%>
-<h3>No Examinations are assigned for You yet!!! Please contact Admin</h3>
+<h3>No Examinations are assigned for You yet!!!</h3>
 <%else%>
 <table id="box-table-a">
   <tr>
@@ -9,7 +19,6 @@
 	<th scope="col">Examination Status</th>
 	<th scope="col">Exam Enrollment Date</th>
 	<th scope="col">Exam Completion Date</th>
-    <th scope="col">Actions</th>
   </tr>
 
 <% @userexaminations.each do |userexamination| %>
@@ -32,9 +41,10 @@
 	<%else%>
     <td><%= userexamination.updated_at.strftime('%d-%b-%Y')%></td>
     <%end%>
-	<td><%= link_to 'Start Examination', :controller => "activexam", :action=>"create", :exam_id=> userexamination.examination_id %>
     </td>
   </tr>
 <% end %>
 </table>
 <%end%>
+<br />
+<%= link_to "Back", :back,:class=>"more"%>

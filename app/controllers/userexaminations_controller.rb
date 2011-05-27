@@ -110,4 +110,10 @@ class UserexaminationsController < ApplicationController
     redirect_to :back
   end
 
+def exam_status
+    @examination = Examination.all
+    @user = User.find(:first, :conditions=>{:id=>params[:user_id]})
+    @userexaminations = Userexamination.find(:all, :conditions => {:user_id => params[:user_id]})
+ 
+end
 end

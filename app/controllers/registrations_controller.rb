@@ -5,6 +5,8 @@ class RegistrationsController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    enrollment_number  = rand(1000000000-9999999999)
+    @user.enrollment_number = enrollment_number
     respond_to do |format|
       if @user.save
         #send mail

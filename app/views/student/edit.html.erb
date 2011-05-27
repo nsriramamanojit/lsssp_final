@@ -8,6 +8,12 @@
         <%= f.error_messages %>
 		       <div>
             <label for="email">
+                Enrollment Number <em>*</em>
+            </label>
+            <%= f.text_field :enrollment_number,:disabled => 'true' %>
+        </div>
+		       <div>
+            <label for="email">
                 Login Id/Email <em>*</em>
             </label>
             <%= f.text_field :email,:disabled => 'true' %>

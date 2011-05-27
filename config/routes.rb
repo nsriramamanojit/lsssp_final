@@ -19,7 +19,7 @@ Lsssp::Application.routes.draw do
   match 'logout' => "user_sessions#destroy", :as => :logout
   
   resources :registrations
-
+  resources :password_resets, :only => [ :new, :create, :edit, :update ]
 #  get "subjects/index"
 #  get "subjects/new"
 #  match "admin/subjects" => "subjects#index", :as => :subject

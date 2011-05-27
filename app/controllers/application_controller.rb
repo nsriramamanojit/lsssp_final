@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+#  before_filter :require_no_user
+#  before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
+   
   before_filter :created_by_or_updated_by
   helper_method :current_user_session, :current_user
   #  filter_parameter_logging :password, :password_confirmation

@@ -105,6 +105,7 @@ class ActivexamController < ApplicationController
       @exam_active.no_of_questions = @total_questions
       @exam_active.total_score = @total_percentage
       @exam_active.result_status = 1
+      @exam_active.updated_at = Time.now
       @exam_active.save
     else
       @exam_active.exam_complete_status =1
@@ -112,6 +113,7 @@ class ActivexamController < ApplicationController
       @exam_active.no_of_questions = @total_questions
       @exam_active.total_score = @total_percentage
       @exam_active.result_status = 0
+      @exam_active.updated_at = Time.now
       @exam_active.save
     end
         ScoreCard.score_card(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
