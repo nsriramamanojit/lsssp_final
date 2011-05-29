@@ -5,7 +5,7 @@ class ActivetestsController < ApplicationController
   
   def index
     @examination = Examination.all
-    @userexaminations = Userexamination.find(:all, :conditions => {:user_id => @created_by})
+    @userexaminations = Userexamination.find(:all, :conditions => {:user_id => @created_by},:order => 'userexaminations.exam_complete_status')
   end
   
   def testcompleted

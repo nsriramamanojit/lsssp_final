@@ -1,40 +1,51 @@
 <h2>List of Available Examinations</h2>
-
 <% if @userexaminations.count == 0%>
 <h3>No Examinations are assigned for You yet!!! Please contact Admin</h3>
 <%else%>
 <table id="box-table-a">
-  <tr>
-    <th scope="col">Examination Name</th>
-	<th scope="col">Examination Status</th>
-	<th scope="col">Exam Enrollment Date</th>
-	<th scope="col">Exam Completion Date</th>
-    <th scope="col">Actions</th>
-  </tr>
-
-<% @userexaminations.each do |userexamination| %>
-  <tr>
-    <td><%= userexamination.examination.examname %></td>
+	<tr>
+		<th scope="col">Examination Name</th>
+		<th scope="col">Examination Status</th>
+		<th scope="col">Exam Enrollment Date</th>
+		<th scope="col">Exam Completion Date</th>
+		<th scope="col">Actions</th>
+	</tr>
+	<% @userexaminations.each do |userexamination| %>
+	<%if userexamination.exam_complete_status == false%>
+<tr>
+	<td><%= userexamination.examination.examname %></td>
 	<td>
-		<%if userexamination.exam_complete_status == false%>
-		<font color="black">Pending</font>
-		<%else%>
-		<%if userexamination.result_status == true%>
-		<font color="green">PASSED</font>
-		<%else%>
-		<font color="red">FAILED</font>
-		<%end%>
-		<%end%>
+	<font color="black">
+		Pending
+	</font>
 	</td>
 	<td><%= userexamination.examination.created_at.strftime('%d-%b-%Y')%></td>
-	<% if userexamination.exam_complete_status == false%>
-	<td><font color="black">Yet to Complete</font></td>
+	<td>
+	<font color="black">
+		Yet to Complete
+	</font>
+	</td>
+	<td><%= link_to 'Start Examination', :controller => "activexam", :action=>"create", :exam_id=> userexamination.examination_id %></td>
 	<%else%>
-    <td><%= userexamination.updated_at.strftime('%d-%b-%Y')%></td>
-    <%end%>
-	<td><%= link_to 'Start Examination', :controller => "activexam", :action=>"create", :exam_id=> userexamination.examination_id %>
-    </td>
-  </tr>
-<% end %>
+	<td><%= userexamination.examination.examname %></td>
+	<td>
+	<%if userexamination.result_status == true%>
+	<font color="green">
+		PASSED
+	</font>
+	<%else%>
+	<font color="red">
+		FAILED
+	</font>
+	<%end%>
+
+	</td>
+	<td><%= userexamination.examination.created_at.strftime('%d-%b-%Y')%></td>
+	<td><%= userexamination.updated_at.strftime('%d-%b-%Y')%></td>
+	<td>Completed</td>
+	<%end%>
+
+</tr>	
+<%end%>
 </table>
 <%end%>
