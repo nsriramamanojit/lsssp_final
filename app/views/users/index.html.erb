@@ -1,69 +1,46 @@
 <h1>List of  Users</h1>
-<div class="flickr_pagination">
-<%= alphabar @paginator %>
+<div>
+<p>Please Enter Keyword such as First Name or Last Name or Email</p>
+	<%= form_tag(controller_name, :method => 'get') do %>
+	<%= text_field_tag :search, params[:search], :maxlength => 25, :class => "searchfield" %>
+	<%= submit_tag "Search"%>
+	<% end %>
 </div>
 <table id="box-table-a">
-    <tr>
-       <th scope="col">
-            Enrollment Number
-        </th>
-        <th scope="col">
-            First Name
-        </th>
-		        <th scope="col">
-            Last Name
-        </th>
-        <th scope="col">
-            Email
-        </th>
-        <th scope="col">
-            Actions
-        </th>
-    </tr>
-    <% @users.each do |user| %>
-	<%if user.id == 1 || user.id == 2%>
-    <tr>
-       <td>
-            ----
-        </td>
-        <td>
-            <%= user.first_name %>
-        </td>
-		<td>
-            <%= user.last_name %>
-        </td>
-        <td>
-            <%= user.email %>
-        </td>
-        <td>
-            <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %> 
-        </td>
-    </tr>
-	<%else%>
-    <tr>
-        <td>
-            <%= user.enrollment_number %>
-        </td>
-        <td>
-            <%= user.first_name %>
-        </td>
-		 <td>
-            <%= user.last_name %>
-        </td>
-
-        <td>
-            <%= user.email %>
-        </td>
-        <td>
-            <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Assign Examination', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | <%= link_to 'Examination Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %>
-        </td>
-        </td>
-    </tr>
-	
-	<%end%>
-    <% end %>
+	<tr>
+		<th scope="col"> SNo</th>
+		<th scope="col"> Enrollment Number</th>
+		<th scope="col"> First Name</th>
+		<th scope="col"> Last Name</th>
+		<th scope="col"> Email</th>
+		<th scope="col"> Created On</th>
+		<th scope="col"> Actions</th>
+	</tr>
+	<% i = 1%>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= i%></td>
+		<td> <%= user.enrollment_number%></td>
+		<td> <%= highlight(user.first_name,params[:search]) %></td>
+		<td> <%= highlight(user.last_name,params[:search]) %></td>
+		<td> <%= highlight(user.email,params[:search]) %></td>
+		<td> <%= user.created_at.strftime('%d-%b-%Y')%>
+		<td> <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %>
+		<% unless (user.id == 1 || user.id == 2) %> |
+		<%= link_to('Delete', user, :confirm => 'Are you sure?', :method => :delete)  %>
+		<%= link_to 'Assign Examination', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | <%= link_to 'Examination Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %></td>
+		<% end %>
+		</td>
+	</tr>
+	<% i = i + 1%>
+	<% end %>
 </table>
-
+<div class="flickr_pagination">
+	<%= will_paginate @users, :container => false %>
+	<div class='page_info'>
+		<%= page_entries_info @users, :entry_name => 'Users' %>
+	</div>
+</div>
 <br/>
 <%=link_to new_user_path,:class=>'more' do %>Create New User<% end %>
 &nbsp;&nbsp;&nbsp;

@@ -8,4 +8,4 @@ gem "paperclip", "~> 2.3"
 gem "will_paginate", "~> 3.0.pre2"
 #gem "paginate_alphabetically"
 gem "alphabar", "~> 0.1.0"
-
+gem 'meta_where'

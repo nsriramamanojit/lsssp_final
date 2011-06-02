@@ -3,6 +3,11 @@
         $('a[rel*=facebox]').facebox()
     })
 </script>
+<script language="javascript"> 
+$(document).bind('reveal.facebox', function(){ 
+$('#facebox').draggable(); 
+ }) 
+ </script> 
 <style>
     .questionpane {
         height: 350x;

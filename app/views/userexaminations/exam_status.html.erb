@@ -18,7 +18,8 @@
     <th scope="col">Examination Name</th>
 	<th scope="col">Examination Status</th>
 	<th scope="col">Exam Enrollment Date</th>
-	<th scope="col">Exam Completion Date</th>
+	<th scope="col">Exam Completion Date</th>	
+	<th scope="col">Manual Score</th>
   </tr>
 
 <% @userexaminations.each do |userexamination| %>
@@ -42,6 +43,7 @@
     <td><%= userexamination.updated_at.strftime('%d-%b-%Y')%></td>
     <%end%>
     </td>
+	<td><%= link_to "Enter Manual Score"%></td>
   </tr>
 <% end %>
 </table>

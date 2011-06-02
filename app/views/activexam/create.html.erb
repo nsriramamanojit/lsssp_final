@@ -71,7 +71,7 @@ jQuery(function ($) {
 		tid = $("#disp").val();
 		// example of calling the confirm function
 		// you must use a callback function to perform the "yes" action
-		confirm("You are about to end your Test. If you really want to quit, please click Yes. Otherwise, please click No", function () {
+		confirm("You are about to submit your exam for final evaluation. Are you sure you want to submit your exam?", function () {
 			window.location.href = "/activexam/test_complete?exam_id=<%= params[:exam_id]%>"
 		});
 	});
@@ -82,7 +82,7 @@ jQuery(function ($) {
 		tid = $("#disp").val();
 		// example of calling the confirm function
 		// you must use a callback function to perform the "yes" action
-		confirm("You are about to Save your Test. If you really want to Save and Take this Test again, please click Yes. Otherwise, please click No", function () {
+		confirm("You are about to save and log out from this exam. You can login again to continue this exam. Are you sure you want to save and log out?", function () {
 			window.location.href = "/activexam/save_exam?exam_id=<%= params[:exam_id] %>&time="+tid;
 		});
 	});

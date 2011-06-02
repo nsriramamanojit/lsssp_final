@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   #before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:index,:show, :edit, :update]
   def index
-    #@users = User.all.paginate :per_page => 10, :page => params[:page]  #Pagination for 10 Records
-    @users, @paginator = User.alpha_scope :email, params[:ltr]
+    @users = User.search(params[:search]).order('created_at DESC').paginate(:page=>params[:page],:per_page=>20 )
+  #   @users, @paginator = User.alpha_scope :email, params[:ltr]
   end
 
   def new
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
         u.updated_by=2
         u.enrollment_number = rand(1000000000-9999999999)
       end
-      UserMailer.welcome_email(@user).deliver
+      #      UserMailer.welcome_email(@user).deliver
       @user.save
       n=n+1
     end
@@ -108,4 +108,5 @@ class UsersController < ApplicationController
     :type => 'text/csv; charset=iso-8859-1; header=present',
     :disposition => "attachment; filename=#{outfile}"
   end
+
 end

@@ -11,6 +11,7 @@ Lsssp::Application.routes.draw do
   resources :users do
      get 'upload', :on=>:collection
      get 'export', :on=>:collection
+     get 'search', :on=>:collection
   end
   
   resources :user_sessions

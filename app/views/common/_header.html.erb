@@ -1,28 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-    <head>
-        <title>LSSSP</title>
-        <%= javascript_include_tag 'application','jquery-1.5.2.min','rails','jquery.simplemodal','facebox' %>
-        <%= stylesheet_link_tag 'admin_screen','confirm' ,'facebox' %>
-        <%= csrf_meta_tag %>
-        <script type="text/javascript">
-            jQuery(document).ready(function($){
-                $('a[rel*=facebox]').facebox()
-            })
-        </script>
-    </head>
-    <body id="store">
-        <div id="header">
-            <div id="welcome">
-                Welcome,<span id="welcome_username"><%=current_user.first_name %></span>
-                <span>!&nbsp;&nbsp;</span>
-                |<%=link_to 'Profile',:controller=>'/student',:action=>'show',:id=>current_user.id %>
-                | <%=link_to 'Logout',logout_path %>
-            </div>
-            <%=link_to image_tag("adminlogo.png"),root_url %>
-        </div>
-        <div id="tabs">
-            <ul>
-                <%= student_tabs %>
-            </ul>
-        </div>
+	<head>
+		<title>LSSSP</title>
+		<%= javascript_include_tag 'application','jquery-1.5.2.min','rails','jquery.simplemodal','facebox','jquery-ui-1.8.13.custom.min' %>
+		<%= stylesheet_link_tag 'admin_screen','confirm' ,'facebox' %>
+		<%= csrf_meta_tag %>
+		<script type="text/javascript">
+				jQuery(document).ready( function($) {
+				$('a[rel*=facebox]').facebox()
+			})</script>
+		<script language="javascript">
+				$(document).bind('reveal.facebox', function() {
+				$('#facebox').draggable();
+			})</script>
+	</head>
+	<body id="store">
+		<div id="header">
+			<div id="welcome">
+				Welcome,
+				<span id="welcome_username"><%= current_user.first_name %></span>
+				<span>!&nbsp;&nbsp;</span>
+				|<%= link_to 'Profile',:controller=>'/student',:action=>'show',:id=>current_user.id %>
+				| <%= link_to 'Logout',logout_path %>
+			</div>
+			<%= link_to image_tag("adminlogo.png"),root_url %>
+		</div>
+		<div id="tabs">
+			<ul>
+				<%= student_tabs %>
+			</ul>
+		</div>

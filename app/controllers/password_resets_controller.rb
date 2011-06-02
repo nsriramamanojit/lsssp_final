@@ -13,7 +13,7 @@ before_filter :load_user_using_perishable_token, :only => [:edit, :update]
 "Please check your email."  
       redirect_to root_url  
     else  
-      flash[:notice] = "No user was found with that email address"  
+      flash[:error] = "No user was found with that email address"  
       render :action => :new  
     end  
   end  

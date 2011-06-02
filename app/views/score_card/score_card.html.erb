@@ -14,7 +14,7 @@
         <p>
             Your details as per our record:
             <br>
-            Enrolment number:
+            Enrolment number:<%=@user.enrollment_number%>
             <br/>
             First name: <%=@user.first_name %>
             <br/>
@@ -45,6 +45,6 @@
             <br/>
             Total correct answers:<%= total_correct_answers%>
             <br/>
-            You got <%= total_percentage%> % while the minimum passing is <%= @examination.passmarks%>% 
+            You got <%= total_percentage%>% while the minimum passing is <%= @examination.passmarks%>% 
         </p>
 
