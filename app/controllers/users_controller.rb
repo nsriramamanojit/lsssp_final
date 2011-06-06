@@ -16,11 +16,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    #    @user.password = @user.password_confirmation = params[:email]
 
+    @user.password = @user.password_confirmation = params[:user][:email]
     @user.created_by = @created_by
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts enrollment_number  = rand(1000000000-9999999999)
+   
+    enrollment_number  = rand(1000000000-9999999999)
     @user.enrollment_number = enrollment_number
     respond_to do |format|
       if @user.save
@@ -74,8 +74,8 @@ class UsersController < ApplicationController
         u.last_name = row[1]
         u.email = row[2]
         u.password = u.password_confirmation = row[2]
-        #        u.phone_number = row[2]
-        #        u.mobile_number = row[3]
+        u.phone_number = row[4]
+        u.mobile_number = row[3]
         u.status = 'Approved'
         u.created_by = 2
         u.updated_by=2

@@ -15,7 +15,7 @@ html, body {
 	margin:0px;
 	padding:0px;
 	color:#5f6568;
-	font-size:13px;
+	font-size:12px;
 	height: 100%;
 	line-height:1.5em; /* vertical spacing between your lines of text*/
 }
@@ -68,7 +68,7 @@ tt {
 
 #header {
  /*   background: #1e4262; */
-    color: skyblue;
+    color: #037DB0;
     padding: 8px 16px 8px 16px;
 }
 
@@ -85,16 +85,16 @@ tt {
 }
 
 #header #welcome a {
-    color: lightyellow;
+    color: #037DB0;
     padding: 1px 4px 2px 4px;
     text-decoration: none;
 }
 
-#header #welcome a:hover {
+/*#header #welcome a:hover {
     background: #1e4262;
-    color: yellow;
+    color: yellow; 
 }
-
+*/
 #header #welcome a.selected {
     background: steelblue;
     color: lightyellow;
@@ -176,7 +176,7 @@ tt {
 }
 
 #footer {
-    color: grey;
+    color: #000000;
     font-size: 11px;
     padding: 0px 0px 0px 16px;
 }
@@ -318,7 +318,7 @@ tt {
     background: whitesmoke;
     color: #3f3f3f;
     margin: 0px 0px 2px 0px;
-    padding: 4px 15px 8px 15px;
+    padding: 0px 15px 8px 0px;
 }
 
 .remote {

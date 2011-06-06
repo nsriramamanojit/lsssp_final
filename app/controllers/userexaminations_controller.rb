@@ -37,23 +37,23 @@ class UserexaminationsController < ApplicationController
   end
   
   def create
-#    @examinations = Examination.all
+    #    @examinations = Examination.all
     
-#    @examinations.each_with_index do | s, index |
-#      exam_id = params["exam_#{s.id}".to_sym]
-#      @totalduration = Examination.find(:first, :conditions=>{:id => exam_id})
-#      @duration = @totalduration.duration
-#      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id,:duration=>@duration)
-#      @userexamination.save
-#    end
+    #    @examinations.each_with_index do | s, index |
+    #      exam_id = params["exam_#{s.id}".to_sym]
+    #      @totalduration = Examination.find(:first, :conditions=>{:id => exam_id})
+    #      @duration = @totalduration.duration
+    #      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id,:duration=>@duration)
+    #      @userexamination.save
+    #    end
     params[:exam][:exam_ids].each do |exam_id|
-    @totalduration = Examination.find(:first, :conditions=>{:id => exam_id.to_i})
-    @duration = @totalduration.duration
-    @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id.to_i,:duration=>@duration)
-     @userexamination.save
-  end
- redirect_to users_path   
-#    redirect_to users_path
+      @totalduration = Examination.find(:first, :conditions=>{:id => exam_id.to_i})
+      @duration = @totalduration.duration
+      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id.to_i,:duration=>@duration)
+      @userexamination.save
+    end
+    redirect_to users_path   
+    #    redirect_to users_path
     #--------------------------------------------------------------------- 
     
     #         @userexamination=Userexamination.new(params[:userexamination])
@@ -79,19 +79,19 @@ class UserexaminationsController < ApplicationController
       @userexamination.user_id = params[:userexamination][:user_id]
       @userexamination.examination_id = exam_id
       @userexamination.duration = params[:duration]
-#      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id,:duration=>@duration)
+      #      @userexamination = Userexamination.new(:user_id => params[:user_id],:examination_id => exam_id,:duration=>@duration)
       @userexamination.save
     end
     
-#    respond_to do |format|
-#      if @userexamination.update_attributes(params[:userexamination])
-#        format.html { redirect_to(@userexamination, :notice => 'Userexamination was successfully updated.') }
-#        format.xml  { head :ok }
-#      else
-#        format.html { render :action => "edit" }
-#        format.xml  { render :xml => @userexamination.errors, :status => :unprocessable_entity }
-#      end
-#    end
+    #    respond_to do |format|
+    #      if @userexamination.update_attributes(params[:userexamination])
+    #        format.html { redirect_to(@userexamination, :notice => 'Userexamination was successfully updated.') }
+    #        format.xml  { head :ok }
+    #      else
+    #        format.html { render :action => "edit" }
+    #        format.xml  { render :xml => @userexamination.errors, :status => :unprocessable_entity }
+    #      end
+    #    end
   end
   
   def destroy
@@ -103,17 +103,39 @@ class UserexaminationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-   def delete
+  
+  def delete
     @userexamination = Userexamination.find(:first,:conditions=>{:user_id=>params[:user_id], :examination_id=>params[:exam_id]})
     @userexamination.destroy
     Activexam.destroy_all(:user_id=>params[:user_id], :examination_id=>params[:exam_id])
     redirect_to :back
   end
-
-def exam_status
+  
+  def exam_status
     @examination = Examination.all
     @user = User.find(:first, :conditions=>{:id=>params[:user_id]})
     @userexaminations = Userexamination.find(:all, :conditions => {:user_id => params[:user_id]})
- 
-end
+    
+  end
+  
+  def manual
+    @examination = Examination.all
+    @user = User.find(:first, :conditions=>{:id=>params[:user_id]})
+    @userexamination = Userexamination.find(:first, :conditions => {:user_id => params[:user_id],:examination_id=>params[:exam_id]})
+  end
+  def manual_entry
+    @userexamination = Userexamination.find(:first, :conditions => {:user_id => params[:user_id],:examination_id=>params[:exam_id]})
+    @userexamination.total_score = params[:total_score]
+    @userexamination.exam_complete_status = 1
+    passmarks = @userexamination.examination.passmarks
+    marks = params[:total_score]
+    
+    if marks.to_i >= passmarks
+       @userexamination.result_status = true
+    else
+       @userexamination.result_status = false
+    end
+   @userexamination.save
+    redirect_to users_path
+  end
 end

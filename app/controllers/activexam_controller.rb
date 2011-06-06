@@ -49,7 +49,9 @@ class ActivexamController < ApplicationController
         @activexams = Activexam.find(:all, :conditions => {:examination_id => params[:exam_id], :user_id => @created_by, :subject_id=>@module_id_array})
       else
        (0..@module_id_array.size-1).each do | m|
+          
           @questions_required = Questionbank.find(:all, :conditions=>{:subject_id => @module_id_array[m]}, :limit=> @question_id_array[m])
+          
           @questions_required_rand = @questions_required.sort_by {rand}
           @questions_required_rand.each do |q |
             @activexam = Activexam.new(:user_id => @created_by,:examination_id => params[:exam_id],:subject_id => @module_id_array[m] , :question_id => q.id)
@@ -116,8 +118,8 @@ class ActivexamController < ApplicationController
       @exam_active.updated_at = Time.now
       @exam_active.save
     end
-        ScoreCard.score_card(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
-        ScoreCard.score_card_admin(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
+    ScoreCard.score_card(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
+    ScoreCard.score_card_admin(active_exams,current_user,@examination,@total_questions,@exam_active).deliver
   end
   
   def answer

@@ -34,20 +34,14 @@
                         Email:<em><font color="red">*</font></em>
                     </div>
                     <%= f.text_field :email,:size=>30 %>
+                    <%= f.hidden_field :password, :value=>'123456' %>
+                    <%= f.hidden_field :password_confirmation, :value=>'123456' %>
                     <div class="label">
-                        Password:<em><font color="red">*</font></em>
-                    </div>
-                    <%= f.password_field :password,:size=>30 %>
-                    <div class="label">
-                        Confirm Password:<em><font color="red">*</font></em>
-                    </div>
-                    <%= f.password_field :password_confirmation, :size=>30 %>
-                    <div class="label">
-                        Mobile:
+                        Primary Contact Number:<em><font color="red">*</font></em> (Mobile/Telephone. Ex:+04412345678)
                     </div>
                     <%= f.text_field :mobile_number, :size=>30 %>
 					 <div class="label">
-                        Phone:
+                        Secondary Contact Number: (Mobile/Telephone. Ex:+04412345678)
                     </div>
                     <%= f.text_field :phone_number, :size=>30 %>
                 </div>
@@ -60,7 +54,7 @@
         </div>
         <center>
             <div id="footer">
-                © 2011 LSSSP
+                © 2011. The Site is compatible with Mozilla version 3 and above, Google Chrome and IE Version 9.
             </div>
         </center>
     </body>

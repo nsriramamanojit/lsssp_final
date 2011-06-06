@@ -2,7 +2,7 @@
 <table>
 <tr>
 <td><h3>Enrollment Number:</h3></td>
-<td><h3> <font color="blue"><%=@user.enrollment_number%></font><h3></td>
+<td><h3> <font color="blue"><%=@user.enrollment_number%></font></h3></td>
 </tr>
 <tr>
 <td><h3>User Email:</h3> </td>
@@ -36,14 +36,14 @@
 		<%end%>
 		<%end%>
 	</td>
-	<td><%= userexamination.examination.created_at.strftime('%d-%b-%Y')%></td>
+	<td><%= userexamination.created_at.strftime('%d-%b-%Y')%></td>
 	<% if userexamination.exam_complete_status == false%>
 	<td><font color="black">Yet to Complete</font></td>
 	<%else%>
     <td><%= userexamination.updated_at.strftime('%d-%b-%Y')%></td>
     <%end%>
     </td>
-	<td><%= link_to "Enter Manual Score"%></td>
+	<td><%= link_to "Enter Manual Score", {:controller => "userexaminations", :action=>"manual",:user_id=>params[:user_id],:exam_id=>userexamination.examination_id}%></td>
   </tr>
 <% end %>
 </table>

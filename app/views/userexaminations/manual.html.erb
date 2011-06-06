@@ -1,0 +1,32 @@
+<h2>Examination Status</h2>
+<table>
+<tr>
+<td><h3>Enrollment Number:</h3></td>
+<td><h3> <font color="blue"><%=@user.enrollment_number%></font></h3></td>
+</tr>
+<tr>
+<td><h3>User Email:</h3> </td>
+<td><font color="blue"><h3><%=@user.email%></font></h3></td>
+</tr>
+<tr>
+<td><h3>Exam Name:</h3> </td>
+<td><font color="blue"><h3><%=@userexamination.examination.examname%></font></h3></td>
+</tr>
+<tr>
+
+	<%= form_for @userexamination,:url=>{:action => 'manual_entry'} do %>
+	   
+ <td>       
+           <h3>Enter Score:</h3> 
+ </td>
+ <td>       
+ 		<%= hidden_field_tag 'user_id', params[:user_id] %>
+		<%= hidden_field_tag 'exam_id', params[:exam_id] %>
+		
+        <%= text_field_tag :total_score %> <%= submit_tag "Submit"%>
+    
+	<%end%>
+</td>
+	
+</tr>
+</table>

@@ -1,19 +1,28 @@
 <h1>List of  Users</h1>
 <div>
-<p>Please Enter Keyword such as First Name or Last Name or Email</p>
+<table>
+<tr>
+<td><%=link_to new_user_path,:class=>'more' do %>Create New User<% end %></td>
+<td><%= link_to 'Import Users',{:action=>'upload'},:class=>'more' %></td>
+<td><%= link_to 'Export Users',{:action=>'export'},:class=>'more' %></td>
+<td width="550" align=right>
 	<%= form_tag(controller_name, :method => 'get') do %>
 	<%= text_field_tag :search, params[:search], :maxlength => 25, :class => "searchfield" %>
 	<%= submit_tag "Search"%>
 	<% end %>
+</td>
+</tr>
+</table>
 </div>
 <table id="box-table-a">
 	<tr>
 		<th scope="col"> SNo</th>
-		<th scope="col"> Enrollment Number</th>
+		<th scope="col"> Enrollment #</th>
 		<th scope="col"> First Name</th>
 		<th scope="col"> Last Name</th>
 		<th scope="col"> Email</th>
 		<th scope="col"> Created On</th>
+		<th scope='col'> Status</th>
 		<th scope="col"> Actions</th>
 	</tr>
 	<% i = 1%>
@@ -24,11 +33,17 @@
 		<td> <%= highlight(user.first_name,params[:search]) %></td>
 		<td> <%= highlight(user.last_name,params[:search]) %></td>
 		<td> <%= highlight(user.email,params[:search]) %></td>
-		<td> <%= user.created_at.strftime('%d-%b-%Y')%>
+		<td> <%= user.created_at.strftime('%d-%b-%Y')%></td>
+		<td> <%if user.login_count == 0 %>
+				Not Verified
+			 <%else%>
+				Verified
+			 <%end%>
+		</td>
 		<td> <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %>
 		<% unless (user.id == 1 || user.id == 2) %> |
-		<%= link_to('Delete', user, :confirm => 'Are you sure?', :method => :delete)  %>
-		<%= link_to 'Assign Examination', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | <%= link_to 'Examination Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %></td>
+		<%= link_to('Delete', user, :confirm => 'Are you sure?', :method => :delete)  %> | 
+		<%= link_to 'Assign Exam', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | <%= link_to 'Exam Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %></td>
 		<% end %>
 		</td>
 	</tr>
@@ -41,9 +56,4 @@
 		<%= page_entries_info @users, :entry_name => 'Users' %>
 	</div>
 </div>
-<br/>
-<%=link_to new_user_path,:class=>'more' do %>Create New User<% end %>
-&nbsp;&nbsp;&nbsp;
-<%= link_to 'Import Users',{:action=>'upload'},:class=>'more' %>
-&nbsp;&nbsp;&nbsp;
-<%= link_to 'Export Users',{:action=>'export'},:class=>'more' %>
+
