@@ -1,28 +1,38 @@
-<div class="form-container">
-    <%= form_for(@user,:url=>{:action=>'update_pass',:id=>current_user.id},:html=>{:class=>'cmxform'}) do |f| %>
-    <p class="legend">
-        <strong>Note:</strong>
-        Required fields are marked with an asterisk (<em>*</em>)
-    </p>
-    <fieldset>
-        <%= f.error_messages %>
-		       <div>
-            <label for="email">
-                New Password <em>*</em>
-            </label>
-            <%= f.password_field :password %>
-			
-        </div>
-        <div>
-            <label for="name">
-                New Password Confirmation<em>*</em>
-            </label>
-            <%= f.password_field :password_confirmation %>
-			
-        </div>
-        <div class="buttonrow">
-            <%= f.submit "Save" ,:class=>'button' %>
-        </div>
-    </fieldset>
-    <% end %>
-</div>
+<%= form_for(@user,:url=>{:action=>'update_pass',:id=>current_user.id},:html=>{:class=>'cmxform'}) do |f| %>
+<div class="tabless">
+	<div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+		<div class="title">
+			Change Password
+			<br>
+		</div>
+		<p class="legend">
+			<strong>Note:</strong>
+			Required fields are marked with an asterisk (
+			<em>*</em>)
+		</p>
+		<div class="section">
+			<div class="label">
+				Password:
+				<em>
+				<font color="red">
+					*
+				</font>
+				</em>
+			</div>
+			<%= f.password_field :password,:size=>30 %>
+			<div class="label">
+				confirm Password:
+				<em>
+				<font color="red">
+					*
+				</font>
+				</em>
+			</div>
+			<%= f.password_field :password_confirmation,:size=>30 %>
+
+			<div class="buttonbar">
+				<%= f.submit "Change Password" %>
+			</div>
+			<% end %>
+		</div>
+	</div>

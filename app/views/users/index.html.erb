@@ -35,9 +35,13 @@
 		<td> <%= highlight(user.email,params[:search]) %></td>
 		<td> <%= user.created_at.strftime('%d-%b-%Y')%></td>
 		<td> <%if user.login_count == 0 %>
-				Not Verified
+				Pending
 			 <%else%>
-				Verified
+				<% if user.login_count == 1%>
+					<%= user.current_login_at.strftime('%d-%b-%Y')%>
+				<%else%>
+					Verified
+				<%end%>
 			 <%end%>
 		</td>
 		<td> <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %>

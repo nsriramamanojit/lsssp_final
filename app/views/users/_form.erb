@@ -1,51 +1,41 @@
-<div class="form-container">
-    <% form_for([@user],:html=>{:class=>'cmxf'}) do |f| %>
-    <p class="legend">
+       <%= form_for @user, :url =>{:action => "create"} do |f| %>
+        <div class="tabless">
+            <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+                <div class="title">
+                    Enter Details for Registration<br>
+					   </div>
+				<p class="legend">
         <strong>Note:</strong>
         Required fields are marked with an asterisk (<em>*</em>)
     </p>
-    <fieldset>
-        
-        <div>
-            <label for="name">
-                First Name<em>*</em>
-            </label>
-            <%= f.text_field :first_name %>
+                <div class="section">
+                    <div class="label">
+                        First Name:<em><font color="red">*</font></em>
+                    </div>
+                    <%= f.text_field :first_name,:size=>30 %>
+                    <div class="label">
+                        Last Name:<em><font color="red">*</font></em>
+                    </div>
+                    <%= f.text_field :last_name,:size=>30 %>
+                    <div class="label">
+                        Email:<em><font color="red">*</font></em>
+                    </div>
+                    <%= f.text_field :email,:size=>30 %>
+                    <%= f.hidden_field :password, :value=>'123456' %>
+                    <%= f.hidden_field :password_confirmation, :value=>'123456' %>
+                    <div class="label">
+                        Primary Contact Number:<em><font color="red">*</font></em> (Mobile/Telephone. Ex:+04412345678)
+                    </div>
+                    <%= f.text_field :mobile_number, :size=>30 %>
+					 <div class="label">
+                        Secondary Contact Number: (Mobile/Telephone. Ex:+04412345678)
+                    </div>
+                    <%= f.text_field :phone_number, :size=>30 %>
+                </div>
+				
+                <div class="buttonbar">
+                    <%= f.submit "Register" %>
+                </div>
+                <% end %>
+            </div>
         </div>
-		        <div>
-            <label for="name">
-                Last Name<em>*</em>
-            </label>
-            <%= f.text_field :last_name %>
-        </div>
-        <div>
-            <label for="email">
-                Email <em>*</em>
-            </label>
-            <%= f.text_field :email %>
-        </div>
-
-            <%= f.hidden_field :password,:value=>"123456" %>
-
-            <%= f.hidden_field :password_confirmation,:value=>"123456" %>
- 
- 
-        <div>
-            <label for="phone_number">
-                Primary Contact Number<em>*</em>
-            </label>
-            <%= f.text_field :mobile_number %>
-        </div>
-        <div>
-            <label for="phone_number">
-                Secondary Contact Number
-            </label>
-            <%= f.text_field :phone_number %>
-        </div>
-
-        <div class="buttonrow">
-            <%= f.submit button_name ,:class=>'button' %>
-        </div>
-    </fieldset>
-    <% end %>
-</div>

@@ -68,7 +68,7 @@ tt {
 
 #header {
  /*   background: #1e4262; */
-    color: #037DB0;
+ /*   color: #037DB0; */
     padding: 8px 16px 8px 16px;
 }
 
@@ -247,7 +247,7 @@ tt {
 .standalone {
     background: whitesmoke;
     border: 20px lightsteelblue solid;
-    margin: 75px auto 6px auto;
+    margin: 20px auto 6px auto;
     padding: 20px;
     width: 400px;
     -moz-border-radius: 6px;

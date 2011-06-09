@@ -19,13 +19,13 @@ class UsersController < ApplicationController
 
     @user.password = @user.password_confirmation = params[:user][:email]
     @user.created_by = @created_by
-   
+
     enrollment_number  = rand(1000000000-9999999999)
     @user.enrollment_number = enrollment_number
     respond_to do |format|
       if @user.save
         #send mail
-        UserMailer.welcome_email(@user).deliver
+ #       UserMailer.welcome_email(@user).deliver
         format.html { redirect_to(users_path, :notice => 'User was successfully created.') }
       else
         format.html { render :action => "new" }
