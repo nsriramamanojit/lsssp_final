@@ -12,20 +12,23 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @enrollment_number  = rand(1000000000-9999999999)
+
   end
 
   def create
     @user = User.new(params[:user])
 
-    @user.password = @user.password_confirmation = params[:user][:email]
+#    @user.password = @user.password_confirmation = params[:user][:email]
     @user.created_by = @created_by
+    @user.status = "Not Approved"
 
-    enrollment_number  = rand(1000000000-9999999999)
-    @user.enrollment_number = enrollment_number
+#    enrollment_number  = rand(1000000000-9999999999)
+#    @user.enrollment_number = enrollment_number
     respond_to do |format|
       if @user.save
         #send mail
- #       UserMailer.welcome_email(@user).deliver
+        UserMailer.welcome_email(@user).deliver
         format.html { redirect_to(users_path, :notice => 'User was successfully created.') }
       else
         format.html { render :action => "new" }
@@ -76,12 +79,12 @@ class UsersController < ApplicationController
         u.password = u.password_confirmation = row[2]
         u.phone_number = row[4]
         u.mobile_number = row[3]
-        u.status = 'Approved'
+        u.status = 'Not Approved'
         u.created_by = 2
         u.updated_by=2
         u.enrollment_number = rand(1000000000-9999999999)
       end
-      #      UserMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver
       @user.save
       n=n+1
     end

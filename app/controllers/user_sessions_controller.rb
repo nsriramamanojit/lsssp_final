@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
       super_admin = Role.find_by_name('super_admin') 
       admin = Role.find_by_name('admin')
       student = Role.find_by_name('student')
-      if user.status == "Approved"
+if user.status == "Approved"
       if user.roles.include?(super_admin) 
               redirect_to(:controller=>'adminindex',:action=>'index')
       elsif user.roles.include?(admin) 
@@ -21,10 +21,8 @@ class UserSessionsController < ApplicationController
       else user.roles.include?(student)
         redirect_to(:controller=>'activetests',:action=>'index')
       end
- 
       else
-       # @user_session.destroy
-        flash[:error] = "Your Account Not Approved,Please contact Admin for more info.."
+        redirect_to(:controller=>'firstlogins',:action=>'index')
       end
   else
     flash[:error] = "Invalid username or password"

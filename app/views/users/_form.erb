@@ -21,8 +21,9 @@
                         Email:<em><font color="red">*</font></em>
                     </div>
                     <%= f.text_field :email,:size=>30 %>
-                    <%= f.hidden_field :password, :value=>'123456' %>
-                    <%= f.hidden_field :password_confirmation, :value=>'123456' %>
+                    <%= f.hidden_field :password, :value=>@enrollment_number%>
+                    <%= f.hidden_field :password_confirmation, :value=>@enrollment_number %>
+					<%= f.hidden_field :enrollment_number, :value=>@enrollment_number %>
                     <div class="label">
                         Primary Contact Number:<em><font color="red">*</font></em> (Mobile/Telephone. Ex:+04412345678)
                     </div>
@@ -34,7 +35,7 @@
                 </div>
 				
                 <div class="buttonbar">
-                    <%= f.submit "Register" %>
+                    <%= f.submit "Save" %>
                 </div>
                 <% end %>
             </div>

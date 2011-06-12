@@ -20,6 +20,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :status ,:default=>'Approved'
       t.integer :created_by
       t.integer :updated_by
+      t.datetime :verified_date
 
       t.timestamps
 
