@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 => 25,  
   :domain               => "lsssp.org",  
   :user_name            => "support+lsssp.org",  
-  :password             => "lsssp123",  
+  :password             => "passw0rd",
   :authentication       => :login,  
   :enable_starttls_auto => false  
 }
