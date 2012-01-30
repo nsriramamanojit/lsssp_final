@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>LSSSP</title>
+        <%= javascript_include_tag 'rails','application' %>
+        <%= stylesheet_link_tag 'admin_screen' %>
+        <%= csrf_meta_tag %>
+  </head>
+  
+  <body>
+    <div id="header">
+      <%=link_to image_tag("adminlogo.png"),root_url %>
+    </div>
+    <div class="tabless">
+      <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
+	  <%=render :partial=>'/import_flash' %>
+
+<form name="one" method="post"> 
+          <div class="title">Welcome to  LSSSP Panel</div>
+          <div class="section">
+            <div class="label">Enter Your Registered Email Address to retrive password</div>
+            <div class="label"> Email:</div><input type="text">
+ 
+          <br>
+          <input type="submit" value="Submit">
+          
+      </div>
+</form>
+    </div>
+    <center>
+      <div id="footer">
+               © 2011
+      </div>
+
+    </center>
+ </body>
+ </html>
+

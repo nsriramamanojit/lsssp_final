@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20110524081636) do
     t.string   "status",            :default => "Approved"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "verified_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "enrollment_number"

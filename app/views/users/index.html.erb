@@ -37,14 +37,18 @@
 		<td> <%if user.status == "Not Approved" %>
 				Pending
 			 <%else%>
-
-					<%= user.verified_date%>
+					<%if user.verified_date?%>
+					<%= user.verified_date.strftime('%d-%b-%Y')%>
+					<%else%>
+					<%end%>
 			 <%end%>
 		</td>
 		<td> <%= link_to 'View', user %> | <%= link_to 'Edit', edit_user_path(user) %>
 		<% unless (user.id == 1 || user.id == 2) %> |
 		<%= link_to('Delete', user, :confirm => 'Are you sure?', :method => :delete)  %> | 
-		<%= link_to 'Assign Exam', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | <%= link_to 'Exam Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %></td>
+		<%= link_to 'Reset Password',:action=>'resetpassword',:id=>user.id%> | 
+		<%= link_to 'Assign Exam', :controller => "userexaminations", :action=>"new", :user_id=> user.id %> | 
+		<%= link_to 'Exam Status', :controller => "userexaminations", :action=>"exam_status", :user_id=> user.id %></td>
 		<% end %>
 		</td>
 	</tr>

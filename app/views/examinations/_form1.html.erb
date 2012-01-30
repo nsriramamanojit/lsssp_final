@@ -1,0 +1,33 @@
+<div class="form-container">
+<%= form_for(@examination) do |f| %>
+ <p class="legend"><strong>Note:</strong> Required fields are marked with an asterisk (<em>*</em>)</p>
+<br>
+<%=f.error_messages%>
+<div>
+<label>Examination Name:</label>  
+<%= f.text_field :examname %>
+</div>
+<div>
+<label>Duration:(Min)</label> 
+<%= f.text_field :duration %>
+</div>
+<div>
+<label>QuestionBank:(Select Max. 20)</label><br>
+<% @subjects.each do |c| %>
+<label><%= check_box_tag "module_id",c.subject.name %> <%= c.subject.name %></label>
+<%= f.text_field :questions, :size=>10 %><br>
+<% end %>
+</div>
+<div>
+<label>Marks:</label><br>
+<label>Passing Marks: </label> <%= f.text_field :passmarks, :value=>0 %><br>
+<label>Positive Marks:</label> <%= f.text_field :positivemarks,:value=>0 %><br>
+<label>Negative Marks:</label> <%= f.text_field :negativemarks, :value=>0 %><br>
+<label>Not Attempting Marks</label> <%= f.text_field :notattemptmarks, :value=>0 %>
+</div>
+
+<div class="buttonrow">
+<%= f.submit "Create" %>
+</div>
+<% end %>
+</div>

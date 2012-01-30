@@ -35,10 +35,10 @@ class StudentController < ApplicationController
   def update_pass
     @user = User.find(params[:id])
 #    @user.updated_by = @updated_by
-    puts "$$$$$$$$$$$$$$$$$$$$$"
+#    puts "$$$$$$$$$$$$$$$$$$$$$"
     
-    puts @user.password = params[:user][:password]
-    puts @user.password_confirmation = params[:user][:password_confirmation]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
     respond_to do |format|
       if @user.save #update_attributes(params[:user])
         format.html { redirect_to({:action=>'show',:id=>current_user.id

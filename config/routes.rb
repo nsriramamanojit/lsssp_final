@@ -12,6 +12,8 @@ Lsssp::Application.routes.draw do
      get 'upload', :on=>:collection
      get 'export', :on=>:collection
      get 'search', :on=>:collection
+#     get 'update_password',:on=>:collection
+#     get 'resetpassword', :on=>:member
   end
   
   resources :user_sessions

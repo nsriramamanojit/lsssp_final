@@ -37,6 +37,18 @@
                     <%= f.text_field :phone_number, :size=>30 %>
                 </div>
 				
+				<div class="title">
+				</div>
+					<div class="label">
+                        Password:<em><font color="red">*</font></em> (Min. Password Length is 4 characters)
+                    </div>
+                    <%= f.password_field :password, :size=>30 %>
+                   <div class="label">
+                        Confirm Password:<em><font color="red">*</font></em>
+                    </div>
+                    <%= f.password_field :password_confirmation, :size=>30 %>
+
+				
                 <div class="buttonbar">
                     <%= f.submit "Update" %>
                 </div>

@@ -111,5 +111,18 @@ class UsersController < ApplicationController
     :type => 'text/csv; charset=iso-8859-1; header=present',
     :disposition => "attachment; filename=#{outfile}"
   end
-
+  
+  def resetpassword
+    @user = User.find(params[:id])
+    @user.password= @user.password_confirmation=@user.enrollment_number
+    @user.status = "Not Approved"
+   respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(users_path, :notice => 'User Password is  successfully Reset.') }
+        format.xml  { head :ok }
+        UserMailer.resetpassword_email(@user).deliver
+      else
+      end
+  end
+  end
 end

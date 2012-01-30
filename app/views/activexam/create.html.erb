@@ -53,7 +53,7 @@
         <% end %>
     </table>
     <div id="questionShow">
-        <%= render 'question_show' %>
+        <%= render 'question_show',:locals => { :lid => @last_question_marker } %>
     </div>
     <div align="center">
     	<div id='confirm-dialog_end'>

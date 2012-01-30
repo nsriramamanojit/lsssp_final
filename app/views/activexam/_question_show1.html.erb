@@ -1,0 +1,27 @@
+<table id="q-table">
+<tr>
+<th scope="col"><%= @question.question_text %></th>
+<tr>
+<tr>
+<form name="answerform">
+<td><input type = "radio" name="answer" value="1" onclick="<%= remote_function(:url=>{:controller => 'activexam', :action =>'update_current_question_answer',:answer=>'1':question_id=>@qid})%>)"><%= @question.option1_text %></td>
+</tr>
+<tr>
+<td>
+<input type = "radio" name="answer" value="2" onclick""><%= @question.option2_text %>
+</td>
+</tr>
+<tr>
+<td>
+<input type = "radio" name="answer" value="3" onclick=""><%= @question.option3_text %>
+</td>
+</tr>
+<tr>
+<td>
+<input type = "radio" name="answer" value="4" onclick=""><%= @question.option4_text %>
+</td>
+</tr>
+</form>
+</table>
+
+

@@ -54,8 +54,6 @@ class UserexaminationsController < ApplicationController
     end
     @userexam=Userexamination.find(:all,:conditions=>{:user_id=>params[:user_id],:created_at => Date.today.beginning_of_day .. Date.today.end_of_day})
     @user = User.find(:first,:conditions=>{:id=>params[:user_id]})
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts @user.first_name
     UserMailer.exam_email(@user,@userexam).deliver
     redirect_to users_path   
     #    redirect_to users_path

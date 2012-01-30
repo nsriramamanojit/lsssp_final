@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validates :first_name, :presence => true
   validates :last_name, :presence =>true
+  validates_presence_of :password, :password_confirmation
+  validates_confirmation_of :password
   
   def role_symbols
     roles.map do |role|

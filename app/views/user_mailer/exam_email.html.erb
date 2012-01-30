@@ -4,28 +4,21 @@
 		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	</head>
 	<body>
-		<h2>Welcome to LSSSP, <%= @user.first_name %>&nbsp;<%= @user.last_name %></h2>
+        <h2><%= @user.first_name %>&nbsp;<%= @user.last_name %>,</h2>
+		<p>Welcome to LSSSP.</p>
+
 		<p>
-			Your Lean Six Sigma Society of Professionals (LSSSP) profile has been successfully created on www.lsssp.org  Please store this for your future reference.
-		</p>
-		<p>
-			Your login credentials are as follows:
-			<br/>
-			Username: <%= @user.email %>
-			<br/>
-			Enrollment Number: <%= @user.enrollment_number%>
-		</p>
-		<p>
-			LSSSP Assigned the follwoing Examinations to You, Please login on www.lsssp.org/login to take Examinations <br/>
+			The following examination(s) are assigned to you:  <br/>
 			<% @userexam.each do |a| %>
-			<%= a.examination.examname %> <br/>
+			<b><%= a.examination.examname %> <br/></b>
 			<%end%>
 		</p>
+		<p>Please login on www.lsssp.org/login to take Examinations</p>
 		<p>
 			Lean Six Sigma Society of Australasia (LSSSA) is the Asia-Pacific chapter for the global Lean Six Sigma Society of Professionals (LSSSP). In the event you may ever need support, please contact us on support@lsssp.org or your course provider.
 		</p>
 		<p>
-			Thanks for joining and have a great day!
+			Wishing you all the very best !!
 		</p>
 	</body>
 </html>

@@ -20,7 +20,7 @@
 				</em>
 				(Min. Password Length is 4 characters)
 			</div>
-			<%= f.password_field :password,:size=>30 %>
+			<%= f.password_field :password,:size=>30, :value => ''  %>
 			<div class="label">
 				Confirm Password:
 				<em>
@@ -29,7 +29,7 @@
 				</font>
 				</em>
 			</div>
-			<%= f.password_field :password_confirmation,:size=>30 %>
+			<%= f.password_field :password_confirmation,:size=>30,  :value => '' %>
 
 			<div class="buttonbar">
 				<%= f.submit "Change Password" %>
